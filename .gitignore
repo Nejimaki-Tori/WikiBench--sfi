@@ -1,0 +1,12 @@
+main.tex
+superfri-template.zip
+superfri-template/example-without-bibtex.pdf
+superfri-template/example-without-bibtex.tex
+.gitignore
+superfri-template/example.bib
+.gitignore
+superfri-template/example.tex
+superfri-template/example.pdf
+superfri-template/splncs04.bst
+superfri-template/pic/ORCID.eps
+superfri-template/pic/pic.eps
