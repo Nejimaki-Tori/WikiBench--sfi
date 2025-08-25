@@ -1,10 +1,10 @@
 \documentclass{superfri}
-\usepackage[T2A]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{mathrsfs}
+\usepackage[cal=rsfso]{mathalfa}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{makecell}
@@ -14,7 +14,10 @@
 \usepackage{algpseudocode}
 \usepackage[normalem]{ulem}
 \usepackage{graphicx}
+\usepackage{xurl} 
+\usepackage{lmodern}
 \usepackage[unicode=true,linktocpage=true]{hyperref}
+\usepackage{type1cm}
 
 \begin{document}
 
@@ -441,18 +444,18 @@ The work was carried out using the supercomputer "MSU-270" of the Lomonosov Mosc
 
 \bibitem{rsglue}
 \textit{RussianSuperGlue.}
-Shavrina T. et al. RussianSuperGLUE: A Russian language understanding evaluation benchmark //EMNLP 2020-2020 Conference on Empirical Methods in Natural Language Processing, Proceedings of the Conference. - 2020. - С. 4717-4726.
+Shavrina, Tatiana, et al. "RussianSuperGLUE: A Russian Language Understanding Evaluation Benchmark." Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP). 2020.
 
 \bibitem{mera}
 \textit{Mera.}
-Fenogenova A. et al. MERA: A Comprehensive LLM Evaluation in Russian //Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). - 2024. - С. 9920-9948.
+Fenogenova, Alena, et al. "MERA: A Comprehensive LLM Evaluation in Russian." Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2024.
 
 \bibitem{libra}
 \textit{LIBRA.}
 Churin I. et al. Long Input Benchmark for Russian Analysis //CoRR. – 2024.
 
 \bibitem{arena}
-VikhrModels. RuLLM Arena: Russian LLM Evaluation Benchmark // GitHub repository. – URL: \url{https://github.com/VikhrModels/ru_llm_arena} (дата обращения: 01.08.2025).
+VikhrModels. RuLLM Arena: Russian LLM Evaluation Benchmark // GitHub repository. – URL: \url{https://github.com/VikhrModels/ru_llm_arena} (accessed: 01.08.2025).
 
 \bibitem{pp}
 \textit{Ping-Pong.}
@@ -460,7 +463,7 @@ Gusev I. PingPong: A Benchmark for Role-Playing Language Models with User Emulat
 
 \bibitem{deepr}
 \textit{OpenAI.}
-Introducing deep research // OpenAI URL: \url{https://openai.com/index/introducing-deep-research/} (дата обращения: 31.07.2025).
+Introducing deep research // OpenAI URL: \url{https://openai.com/index/introducing-deep-research/} (accessed: 31.07.2025).
 
 \bibitem{storm}
 \textit{Storm.}
@@ -468,7 +471,7 @@ Shao Y. et al. Assisting in Writing Wikipedia-like Articles From Scratch with La
 
 \bibitem{resar}
 \textit{ResearchArena.}
-Kang H., Xiong C. ResearchArena: Benchmarking LLMs' Ability to Collect and Organize Information as Research Agents //arXiv e-prints. - 2024. - С. arXiv: 2406.10291.
+Kang, Hao, and Chenyan Xiong. "ResearchArena: Benchmarking LLMs' Ability to Collect and Organize Information as Research Agents." arXiv e-prints (2024): arXiv-2406.
 
 \bibitem{rerank}
 \textit{Reranking.}
@@ -478,11 +481,11 @@ Wang X. et al. Searching for Best Practices in Retrieval-Augmented Generation //
 Touvron H. et al. LLaMA: Open and Efficient Foundation Language Models.
 
 \bibitem{hier} 
-Wu J. et al. Recursively Summarizing Books with Human Feedback //arXiv e-prints. - 2021. - С. arXiv: 2109.10862.
+Wu, Jeff, et al. "Recursively summarizing books with human feedback." arXiv preprint arXiv:2109.10862 (2021).
 
 \bibitem{ndcg}
 \textit{NDCG.}
-Järvelin K., Kekäläinen J. Cumulated gain-based evaluation of IR techniques //ACM Transactions on Information Systems (TOIS). - 2002. - Т. 20. - №. 4. - С. 422-446.
+Järvelin, Kalervo, and Jaana Kekäläinen. "Cumulated gain-based evaluation of IR techniques." ACM Transactions on Information Systems (TOIS) 20.4 (2002): 422-446.
 
 \bibitem{rprecision}
 \textit{R-Precision.}
@@ -494,7 +497,7 @@ Zhang T. et al. BERTScore: Evaluating Text Generation with BERT //International 
 
 \bibitem{rouge}
 \textit{ROUGE.}
-Lin C. Y. Rouge: A package for automatic evaluation of summaries //Text summarization branches out. - 2004. - С. 74-81.
+Lin, Chin-Yew. "Rouge: A package for automatic evaluation of summaries." Text summarization branches out. 2004.
 
 \bibitem{bleu}
 \textit{BLEU.}
@@ -502,7 +505,7 @@ Papineni K. et al. BLEU: a Method for Automatic Evaluation of Machine Translatio
 
 \bibitem{ruadapt}
 \textit{RuadaptQwen.}
-Tikhomirov M., Chernyshev D. Facilitating large language model russian adaptation with learned embedding propagation //Journal of Language and Education. - 2024. - Т. 10. - №. 4 (40). - С. 130-145.
+Tikhomirov, Mikhail, and Daniil Chernyshev. "Facilitating large language model russian adaptation with learned embedding propagation." Journal of Language and Education 10.4 (40) (2024): 130-145.
 
 \bibitem{deepseek}
 \textit{DeepSeek V3.}
@@ -513,10 +516,10 @@ Liu A. et al. DeepSeek-V3 Technical Report //CoRR. - 2024.
 Yang A. et al. Qwen3 technical report //arXiv preprint arXiv:2505.09388. - 2025.
 
 \bibitem{tpro}
-Т-Банк открыл доступ к собственной русскоязычной языковой модели в весовой категории 7-8 млрд параметров // Т-Банк URL: \url{https://www.tbank.ru/about/news/20072024-t-bank-opened-access-its-own-russian-language-language-model-weight-category-of-7-8-billion-parameters/} (дата обращения: 10.05.2025).
+T-Bank has opened access to its own Russian-language language model in the weight category of 7-8 billion parameters / T-Bank URL: \url{https://www.tbank.ru/about/news/20072024-t-bank-opened-access-its-own-russian-language-language-model-weight-category-of-7-8-billion-parameters/} (accessed: 10.05.2025).
 
 \bibitem{yagpt}
-YandexGPT 5 с режимом рассуждений // Яндекс URL: \url{https://ya.ru/ai/gpt} (дата обращения: 30.07.2025).
+YandexGPT 5 with reasoning mode // Yandex URL: https://ya.ru/ai/gpt (accessed: 30.07.2025).
 
 \end{thebibliography}
 \end{document}
