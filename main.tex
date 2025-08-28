@@ -7,6 +7,7 @@
 \usepackage[cal=rsfso]{mathalfa}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{multicol}
 \usepackage{makecell}
 \usepackage{tabularx}
 \usepackage{float}
@@ -20,7 +21,7 @@
 \usepackage{type1cm}
 
 \begin{document}
-
+\raggedbottom
 
 \author{D.\,A.~Grigoriev\footnote{\label{msu}Lomonosov Moscow State University, Moscow, Russia}\footnote{E-mail: dagrig14@yandex.ru}
 \and D.\,I.~Chernyshev\footnoteref{msu}\footnote{E-mail: chdanorbis@yandex.ru}}
@@ -37,7 +38,7 @@ This paper presents RuWikiBench - an open benchmark based on Ruwiki for evaluati
 built around three tasks:
 selection of relevant sources, article structuring, and section generation.
 The results of testing popular open-source LLMs show that even under ideal conditions, the best models do not always follow the expert logic of composing encyclopedic content:
-even with a perfect source retrieval system, the models cannot reproduce the reference table of contents, and the quality of section generation shows almost no dependence on the number of parameters.
+even with a perfect source retrieval system, the models cannot reproduce the reference outline, and the quality of section generation shows almost no dependence on the number of parameters.
 
 \keywords{benchmark, Wikipedia, Ruwiki, large language model}
 \end{abstract}
@@ -58,7 +59,7 @@ At the same time, an entire class of tasks related to deep text analysis remains
 
 The recent development of new agent capabilities, such as the emergence of the "Deep Research" function by OpenAI \cite{deepr} or the development of the universal Storm algorithm \cite{storm}, 
 indicates a growing interest in conducting scientific research using large language models. This highlights the need to create new approaches for objectively evaluating the analytical capabilities of models. 
-Existing benchmarks only partially address aspects critical for generating scientific-encyclopedic texts, such as the ability to synthesize information from a set of documents, plan the structure of a future text, 
+Existing benchmarks only partially address aspects critical for generating scientific-encyclopedic texts, such as the ability to synthesize information from a set of documents, provide the structure of a future text, 
 maintain coherence and logical sequence of presentation, as well as ensure the accuracy and reliability of facts. One of the closest studies in this area is the ResearchArena \cite{resar} benchmark, 
 which formalizes the construction of an academic review; however, it is more aimed at testing the models' ability to select and organize relevant information and does not address their ability to generate coherent scientific-encyclopedic texts.
 
@@ -73,7 +74,7 @@ The code and data of this work have been made publicly available\footnote{\url{h
 
 \section{Dataset collection}
 
-To build a benchmark aimed at assessing the ability of language models to work with article sources, it is necessary to prepare a corpus of texts that will be used in generation. The choice was made in favor of the Wikipedia style because this genre simultaneously requires factual accuracy, completeness of analysis, and understanding of context, which aligns well with the research direction of this work.
+To build a benchmark aimed at assessing the ability of language models to work with article sources, it is necessary to prepare a corpus of texts that will be used in generation. The choice was made in favor of the Wikipedia-style because this genre simultaneously requires factual accuracy, completeness of analysis, and understanding of context, which aligns well with the research direction of this work.
 
 The Russian online encyclopedia "Ruwiki" was chosen as the source. It is distinguished by a large number of references to Russian-language sources, as well as stricter text filtering, which allows it to be relied upon as a reliable benchmark for assessing the quality of generating Russian-language articles.
 
@@ -85,28 +86,18 @@ The data acquisition process included the following steps:
 \item \parbox[t]{0.9\textwidth}{\textbf{Splitting into Snippets}: To reproduce real Retrieval Augmented Generation (RAG) conditions, all texts were split into small fragments of approximately $\approx 600$ words in length.}
 \end{enumerate}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/Source_extract.png}
-\caption{Source Extraction}
-\label{fig:source}
-\end{figure}
+\fig{width=0.8\linewidth}{figures/Source_extract.png}{Distribution of texts by genres (top 10 genres)}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/article_entities.png}
-\caption{Main Article Entities}
-\label{fig:article}
-\end{figure}
+\fig{width=0.8\linewidth}{figures/article_entities.png}{Distribution of texts by genres (top 10 genres)}
 
-During the data acquisition stage, primary information extraction from the selected article and the collection of its associated sources are performed. Figure \ref{fig:source} shows a brief schematic of the source text extraction process. The sources were downloaded using the Python module \texttt{newspaper3k}\footnote{\url{https://github.com/codelucas/newspaper}}.
+During the data acquisition stage, primary information extraction from the selected article and the collection of its associated sources are performed. \figref{figures/Source_extract.png} shows a brief schematic of the source text extraction process. The sources were downloaded using the Python module \texttt{newspaper3k}\footnote{\url{https://github.com/codelucas/newspaper}}.
 A subset of "Ruwiki" articles BB is taken as the initial corpus.
 The extraction of the article's HTML code is performed using standard Python module tools\footnote{\url{https://beautiful-soup-4.readthedocs.io/en/latest/}}$^,$\footnote{\url{https://requests.readthedocs.io/en/latest/index.html}}.
 The obtained text is structured by splitting it into fragments corresponding to nested headings (H1, H2, H3, etc.), which preserves both the substantive part of the article and its hierarchical organization.
 Next, all external references cited in the "Notes" section are automatically extracted. Invalid links (e.g., 404 error) are excluded from further processing,
 and the text associated with them is removed, leaving only those sources that are actually accessible.
 
-Figure \ref{fig:article} illustrates the schematic breakdown of an article\footnote{\url{https://ru.ruwiki.ru/wiki/Python}} into key entities used in subsequent processing.
+\figref{figures/article_entities.png} illustrates the schematic breakdown of an article\footnote{\url{https://ru.ruwiki.ru/wiki/Python}} into key entities used in subsequent processing.
 During the data processing stage, text filtering is performed to ensure its correct interpretation by the model.
 Each footnote (e.g., [1], [2]) is matched to a specific link corresponding to one of the available sources.
 This allows for precise identification of the link's position in the article text and its use for subsequent filtering.
@@ -122,7 +113,7 @@ This allows for precise identification of the link's position in the article tex
         \hline
         Total number of snippets & 36,860 & - \\
         \hline
-        Average plan size (number of headings) & 37 & - \\
+        Average outline size (number of headings) & 37 & - \\
         \hline
         Average section size (number of words) & 112 & - \\
         \hline
@@ -134,7 +125,7 @@ That is, only content supported by the extracted sources is retained; everything
 Only sources for which a text \(t_q\) of at least 1500 characters could be retrieved are kept,
 to filter out "noisy" responses from HTML pages such as errors (e.g., error 404) or blocking messages.
 \(A_b^{\mathrm{filtered}}\) retains only those paragraphs that contain at least one link to a source for which text was successfully retrieved.
-Similarly, \(H_b^{\mathrm{filtered}}\) is formed—only those headings under which at least one paragraph remains.
+Similarly, \(H_b^{\mathrm{filtered}}\) is formed-only those headings under which at least one paragraph remains.
 The characteristics of the collected corpus are presented in \tabref{tab:dataset}.
 
 \section{Evaluation Methodology}
@@ -142,7 +133,7 @@ The characteristics of the collected corpus are presented in \tabref{tab:dataset
 To objectively assess the ability of language models to generate scientific and encyclopedic texts, it is necessary to replicate the real process of preparing encyclopedic content:
 \begin{enumerate}
     \item \textbf{Selection of relevant sources}: The model is given the article title and a set of snippets, among which it must identify and rank materials relevant to the topic by their significance;
-    \item \textbf{Article structure construction}: Based on the topic and selected sources, the model creates an outline with main sections in the Wikipedia style;
+    \item \textbf{Article structure construction}: Based on the topic and selected sources, the model creates an outline with main sections in the Wikipedia-style;
     \item \textbf{Section generation}: Article materials are distributed across sections, after which a summary of the relevant materials is generated for each section.
 \end{enumerate}
 Each stage is evaluated independently of the previous ones, allowing for a quantitative measurement of the quality of each specific subtask.
@@ -155,16 +146,31 @@ The queries in both languages are then combined into a single textual query for 
 Experiments were conducted with two approaches to query formulation:
 \begin{enumerate}
 \item \textbf{Pre-generated query based on the title and second-level headings}: Allows for a clean evaluation of the models' ranking abilities; the LLaMa 3 70b model \cite{llama} was used to generate the query;
-\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the LLM is fully responsible for the quality of the results and independently decides which search query to formulate for BM25.
+\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the fLLM is fully responsible for the quality of the results and independently decides which search query to formulate for BM25.
 \end{enumerate}
-Examples of generated descriptions are shown in Figure \ref{fig:cxx}.
+Examples of generated descriptions are shown in \tabref{tab:cxx}.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=\textwidth]{figures/two_queries.png}
-\caption{Comparison of descriptions for the article <<C++>> using the two approaches}
-\label{fig:cxx}
-\end{figure}
+\tab{tab:cxx}{Comparison of descriptions of the article “C++” in two variants}{
+  \center
+  \small
+  \begin{tabular}{|p{0.15\linewidth}|p{0.75\linewidth}|}
+  \hline
+  \makecell{\textbf{Query} \\ \textbf{Variant}} & \makecell{\textbf{Text}} \\ 
+  \hline
+
+  \makecell{\textbf{Generation} \\ \textbf{by headings}} & The article "C++" is an overview of the C++ programming language, its history, structure, and features. 
+  It covers the main aspects of the language, including its standard library, differences from the C language, and further development. 
+  In addition, the article contains examples of C++ programs, comparisons with alternative programming languages, as well as critical analysis and discussion of the influence of C++ on the development of programming and existing alternatives. 
+  The article is intended for readers interested in the C++ language and its role in modern programming. \\ 
+  \hline
+  \makecell{\textbf{Generation} \\ \textbf{by title}}   & The article "C++" may be dedicated to the C++ programming language, one of the most popular and widely used programming languages in the world.
+  The article may cover the basics of the language, its history, syntax and features, as well as its applications in various fields such as operating systems development, games, and web applications. 
+  In addition, the article may include information about C++ standards and libraries, as well as its comparison with other programming languages. 
+  The article can be useful both for beginner programmers and for experienced professionals who want to deepen their knowledge of C++. 
+  It may also include code examples and practical tips on using C++ in real projects. \\ 
+  \hline
+  \end{tabular}
+}
 
 The documents selected by the BM25 query are sequentially passed to the large language model, which must classify each snippet as relevant (answer "yes") or non-relevant (answer "no").
 To obtain numerical scores, the titles of the articles to which the retrieved documents belong are compared with the title of the article for which source texts are being selected.
@@ -178,7 +184,7 @@ For determinism, the KMeans algorithm is applied with the number of clusters equ
 
 Next, five snippets closest to the cluster center are selected. This is done to reduce the influence of less relevant snippets on the final outline.
 The formation of mini-outlines for sections is carried out taking into account two key parameters:
-the context window size (to account for references and the overall semantics of the document) and two generation modes — directly from the texts and through preliminary generation of a brief cluster description.
+the context window size (to account for references and the overall semantics of the document) and two generation modes - directly from the texts and through preliminary generation of a brief cluster description.
 The two generation modes allow for choosing the level of abstraction:
 the direct mode preserves details with raw data, while the mode via preliminary cluster description
 improves consistency of formulations and reduces information duplication.
@@ -190,7 +196,7 @@ All snippets are again converted into embeddings, and a pairwise similarity matr
 Elements with a similarity value above the threshold of 0.8 (empirically determined) are considered semantically close and are grouped together to avoid redundant repetitions during generation (e.g., when different sources paraphrase the same information).
 For each such semantic group, a hierarchical representation is built: the first five texts are taken, and a brief description is generated based on them.
 This description is then supplemented using the next five texts, and so on, until a complete compressed representation of the group is obtained.
-Thus, only a set of brief descriptions remains — the most important information without unnecessary repetition.
+Thus, only a set of brief descriptions remains - the most important information without unnecessary repetition.
 After this, the text of the section is generated based on the obtained group descriptions using a hierarchical summarization method \cite{hier}.
 
 \section{Experimental Setup Description}
@@ -201,13 +207,13 @@ For all models, unless otherwise specified, the same generation parameters were 
 
 \subsection{Relevant Source Selection}
 Snippet indexing was performed using BM25\footnote{\url{https://github.com/xhluca/bm25s}} across the entire corpus of collected snippets without hyperparameter tuning (default values).
-For each relevant document, two non-relevant documents were selected (ratio 1:2) — this was done to improve evaluation robustness.
+For each relevant document, two non-relevant documents were selected (ratio 1:2) - this was done to improve evaluation robustness.
 
 \subsection{Article Structure Construction}
 Snippets were converted into vector space using the \texttt{sergeyzh/BERTA}\footnote{\url{https://huggingface.co/sergeyzh/BERTA}} model.
 Two context window options were considered: either a zero window (only the snippet itself) or one neighboring snippet to the left and right to expand the context.
-Header similarity with reference headers was compared using cosine similarity: semantic correspondence was prioritized over exact wording or header level.
-The comparison was performed against the cleaned article structure: all headers whose sections consisted entirely of text without downloadable sources were removed from the preprocessed text.
+Heading similarity with reference headings was compared using cosine similarity: semantic correspondence was prioritized over exact wording or heading level.
+The comparison was performed against the cleaned article structure: all headings whose sections consisted entirely of text without downloadable sources were removed from the preprocessed text.
 
 \section{Evaluation Metrics}
 
@@ -290,136 +296,170 @@ In the first case (Table \ref{tab:query_ref}), where a pre-generated search quer
 the best results were achieved by DeepSeek V3, which indicates a strong ability to select relevant documents.
 In the second experiment (\ref{tab:query_def}), where the query was formed solely from the article title, tpro achieved the best results.
 The experiment showed that BM25’s own query generation is not inferior in ranking quality to the reference setup, in which queries are generated by a more “powerful” model and then
-used by all evaluated models. Presumably, this is because—as shown in Figure \ref{fig:cxx}—the queries turn out to be similar:
+used by all evaluated models. Presumably, this is because-as shown in \ref{tab:cxx} - the queries turn out to be similar:
 LLMs have knowledge of Wikipedia’s typical article structure from training and can therefore connect relevant concepts in the required format.
 
-\begin{table}[ht!]
+\tab{tab:query_ref}{Results of pure ranking ability evaluation}{
 \centering
-\caption{Results of pure ranking ability evaluation}
-\begin{tabular}{l|c|c}
-\hline
-\textbf{Model} & \textbf{NDCG} & \textbf{R-Pr} \\
-\hline
-baseline (bm25)                                                  & 88.81 & 62.51 \\
-\hline
-\textbf{DeepSeek V3}                                             & \uline{\textbf{95.42}} & \uline{\textbf{83.86}} \\
-Qwen3-\allowbreak 235B-\allowbreak A22B                          & 94.49 & 82.42 \\
-\hline
-RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 95.25 & 81.81 \\
-tpro                                                             & \uline{95.42} & \uline{83.53} \\
-\hline
-RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & 88.26 & 62.26 \\
-yagpt5lite                                                       & \uline{90.35} & \uline{77.66} \\
-\hline
-\end{tabular}
-\label{tab:query_ref}
-\end{table}
+  \begin{tabular}{l|c|c}
+    \hline
+    \textbf{Model} & \textbf{NDCG} & \textbf{R-Pr} \\
+    \hline
+    baseline (bm25)                                                  & 88.81 & 62.51 \\
+    \hline
+    \textbf{DeepSeek V3}                                             & \uline{\textbf{95.42}} & \uline{\textbf{83.86}} \\
+    Qwen3-\allowbreak 235B-\allowbreak A22B                          & 94.49 & 82.42 \\
+    \hline
+    RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 95.25 & 81.81 \\
+    tpro                                                             & \uline{95.42} & \uline{83.53} \\
+    \hline
+    RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & 88.26 & 62.26 \\
+    yagpt5lite                                                       & \uline{90.35} & \uline{77.66} \\
+    \hline
+  \end{tabular}
+}
 
-\begin{table}[ht]
+\tab{tab:query_def}{Results of evaluating BM25 query-generation ability}{
 \centering
-\caption{Results of evaluating BM25 query-generation ability}
-\begin{tabular}{l|cc|cc}
-\hline
-\multirow{2}{*}{\textbf{Model}} & \multicolumn{2}{c|}{\textbf{BM25}} & \multicolumn{2}{c}{\textbf{Rerank}} \\
-& \textbf{NDCG} & \textbf{R-Pr} & \textbf{NDCG} & \textbf{R-Pr} \\
-\hline
-DeepSeek V3                                                      & 88.39 & 60.65 & \uline{95.67} & \uline{83.07} \\
-Qwen3-235B-A22B                                                  & \uline{89.17} & \uline{62.98} & 94.90 & 81.96 \\
-\hline
-RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 85.39 & 52.80 & 95.82 & 81.62 \\
-\textbf{tpro}                                                    & \uline{\textbf{90.61}} & \uline{\textbf{65.07}} & \uline{\textbf{96.06}} & \uline{\textbf{83.37}} \\
-\hline
-RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & \uline{88.81} & \uline{62.51} & 88.23 & 60.96 \\
-yagpt5lite                                                       & 86.59 & 57.98 & \uline{90.27} & \uline{77.65} \\
-\hline
-\end{tabular}
-\label{tab:query_def}
-\end{table}
+  \begin{tabular}{l|cc|cc}
+    \hline
+    \multirow{2}{*}{\textbf{Model}} & \multicolumn{2}{c|}{\textbf{BM25}} & \multicolumn{2}{c}{\textbf{Rerank}} \\
+    & \textbf{NDCG} & \textbf{R-Pr} & \textbf{NDCG} & \textbf{R-Pr} \\
+    \hline
+    DeepSeek V3                                                      & 88.39 & 60.65 & \uline{95.67} & \uline{83.07} \\
+    Qwen3-235B-A22B                                                  & \uline{89.17} & \uline{62.98} & 94.90 & 81.96 \\
+    \hline
+    RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 85.39 & 52.80 & 95.82 & 81.62 \\
+    \textbf{tpro}                                                    & \uline{\textbf{90.61}} & \uline{\textbf{65.07}} & \uline{\textbf{96.06}} & \uline{\textbf{83.37}} \\
+    \hline
+    RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & \uline{88.81} & \uline{62.51} & 88.23 & 60.96 \\
+    yagpt5lite                                                       & 86.59 & 57.98 & \uline{90.27} & \uline{77.65} \\
+    \hline
+  \end{tabular}
+}
 
 Overall, the models show fairly high metric values at this stage, which may be due to the fact that an article title reflects its content well.
 In the best cases, up to 80\% of the documents in the sample are relevant, which can be considered a good figure; however, there remains potential for further improvement.
 
-\begin{table}[ht!]
+\tab{tab:outline_res}{Results of outline generation}{
 \centering
-\caption{Results of outline generation}
-\begin{tabular}{l|c|c|c}
-\hline
-\multirow{2}{*}{\textbf{Model}} & \multicolumn{3}{c}{\textbf{Mean BERTScore F1}} \\
-\cline{2-4}
-& \multicolumn{2}{c|}{\textbf{Direct}} & \multirow{2}{*}{\textbf{Description}} \\
-\cline{2-3}
-& \textbf{no neighbors} & \makecell{\textbf{one neighbor}} & \\
-\hline
-\textbf{DeepSeek V3}                                             & \uline{\textbf{63.51}} & \uline{\textbf{62.93}} & \uline{\textbf{65.50}} \\
-Qwen3-\allowbreak 235B-\allowbreak A22B                          & 60.86 & 59.06 & 62.66 \\
-\hline
-RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 60.12 & \uline{60.04} & \uline{62.91} \\
-tpro                                                             & \uline{60.32} & 59.09 & 60.75 \\
-\hline
-RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & \uline{60.03} & 58.21 & \uline{61.58} \\
-yagpt5lite                                                       & 59.72 & \uline{60.07} & 60.25 \\
-\hline
-\end{tabular}
-\label{tab:outline_res}
-\end{table}
+  \begin{tabular}{l|c|c|c}
+    \hline
+    \multirow{2}{*}{\textbf{Model}} & \multicolumn{3}{c}{\textbf{Mean BERTScore F1}} \\
+    \cline{2-4}
+    & \multicolumn{2}{c|}{\textbf{Direct}} & \multirow{2}{*}{\textbf{Description}} \\
+    \cline{2-3}
+    & \textbf{no neighbors} & \makecell{\textbf{one neighbor}} & \\
+    \hline
+    \textbf{DeepSeek V3}                                             & \uline{\textbf{63.51}} & \uline{\textbf{62.93}} & \uline{\textbf{65.50}} \\
+    Qwen3-\allowbreak 235B-\allowbreak A22B                          & 60.86 & 59.06 & 62.66 \\
+    \hline
+    RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 & 60.12 & \uline{60.04} & \uline{62.91} \\
+    tpro                                                             & \uline{60.32} & 59.09 & 60.75 \\
+    \hline
+    RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta              & \uline{60.03} & 58.21 & \uline{61.58} \\
+    yagpt5lite                                                       & 59.72 & \uline{60.07} & 60.25 \\
+    \hline
+  \end{tabular}
+}
 
 Table \ref{tab:outline_res} presents the results of evaluating article-structure construction.
-Direct — generation from the cluster snippets, with neighbor context as indicated; Description — generation via a preliminary description of all cluster elements.
+Direct - generation from the cluster snippets, with neighbor context as indicated; Description - generation via a preliminary description of all cluster elements.
 The results show that with preliminary description generation, all models consistently improve in quality.
 RuadaptQwen3 shows the largest gain, rising to second place and effectively matching the results of the larger model,
 Qwen3-\allowbreak 235B-\allowbreak A22B. DeepSeek V3 remains the leader, showing a substantial margin over the others. At the bottom in quality are RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta and yagpt5lite.
 At the same time, yagpt5lite, with only 8 billion parameters, delivers results comparable to a 32-billion-parameter model.
-Figure \ref{fig:outline} shows a comparison of a small excerpt of the reference and generated outlines.
+\tabref{tab:outline} shows a comparison of a small excerpt of the reference and generated outlines.
 The obtained results correlate well with the degree of similarity between the headings and the reference. A common issue across all models was excessive heading hierarchy depth.
-On “Ruviki”, headings were rarely deeper than level three; however, the models often created fourth- and fifth-level headings, implying that all information belongs in one large section,
+On “Ruwiki”, headings were rarely deeper than level three; however, the models often created fourth- and fifth-level headings, implying that all information belongs in one large section,
 even though it may differ somewhat in meaning and, in the original outline, would correspond to unrelated headings.
 
-\begin{figure}[ht!]
+\tab{tab:outline}{Comparison of two article outlines}{
 \centering
-\includegraphics[width=\textwidth]{figures/outline.png}
-\caption{Comparison of two article outlines}
-\label{fig:outline}
-\end{figure}
+  \begin{multicols}{2}
+    \textbf{Generated} \\
+    \small\setlength{\parskip}{2pt}\setlength{\parindent}{0pt}
+    \texttt{\#} Introduction to Python\\
+    \texttt{\#\#} Language Overview\\
+    \texttt{\#\#\#} History and Key Aspects\\
+    \texttt{\#\#\#\#} Main Features and Implementations\\
+    \texttt{\#} Python Basics\\
+    \texttt{\#\#} Syntax and Semantics\\
+    \texttt{\#\#\#} Data Types and Structures\\
+    \texttt{\#\#\#\#} Numbers, Lists, Dictionaries \\ and Object-Oriented Programming\\
+    \texttt{\#} Advanced Python Topics\\
+    \texttt{\#\#} Flow Control and Multithreading\\
+    \dots
+    \columnbreak
+    \\ \textbf{Reference} \\
+    \small\setlength{\parskip}{2pt}\setlength{\parindent}{0pt}
+    \texttt{\#} Python\\
+    \texttt{\#\#} History\\
+    \texttt{\#\#} Concept and Philosophy\\
+    \texttt{\#\#} Portability\\
+    \texttt{\#\#} Data Types and Structures\\
+    \texttt{\#\#} Syntax and Semantics\\
+    \texttt{\#\#\#} Indentation System\\
+    \texttt{\#\#\#} Expressions\\
+    \texttt{\#\#\#} Names\\
+    \texttt{\#\#\#} Documentation Strings\\
+    \texttt{\#\#} Programming Paradigms\\
+    \dots
+  \end{multicols}
+}
 
 Table \ref{tab:secs} reports the measurements of section-generation quality. The final results are at roughly the same level, but this is due to the sensitivity of the metric used.
 Sections for which the algorithm did not select a single relevant snippet were excluded from the final metrics. The best overall results
 were demonstrated by Qwen3-\allowbreak 235B-\allowbreak A22B; however, in terms of ROUGE-\allowbreak L and BLEU, RuadaptQwen3-\allowbreak 32BInstruct-v2 leads, indicating better structural consistency and
 greater overlap of wording with the reference.
-The yagpt5lite model performs above average—especially on BLEU—at a much smaller size, whereas tpro shows the lowest values across all metrics.
+The yagpt5lite model performs above average-especially on BLEU-at a much smaller size, whereas tpro shows the lowest values across all metrics.
 
-\begin{table}[ht!]
+\tab{tab:secs}{Results of section generation}{
 \centering
-\caption{Results of section generation}
-\begin{tabular}{l|c|c|c}
-\hline
-\textbf{Model} & \textbf{Mean F1} & \textbf{Mean ROUGE-L} & \textbf{Mean BLEU} \\
-\hline
-DeepSeek V3                                                               & 53.48 & 14.34 & 2.81 \\
-Qwen3-\allowbreak 235B-\allowbreak A22B                                   & \uline{\textbf{53.74}} & \uline{14.63} & \uline{3.07} \\
-\hline
-\textbf{RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2} & 53.21 & \uline{\textbf{15.46}} & \uline{\textbf{3.40}} \\
-tpro                                                                      & 53.15 & 13.58 & 2.27 \\
-\hline
-RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta                       & 52.99 & 12.29 & 2.11 \\
-yagpt5lite                                                                & \uline{53.43} & \uline{14.85} & \uline{3.16} \\
-\hline
-\end{tabular}
-\label{tab:secs}
-\end{table}
+  \begin{tabular}{l|c|c|c}
+    \hline
+    \textbf{Model} & \textbf{Mean F1} & \textbf{Mean ROUGE-L} & \textbf{Mean BLEU} \\
+    \hline
+    DeepSeek V3                                                               & 53.48 & 14.34 & 2.81 \\
+    Qwen3-\allowbreak 235B-\allowbreak A22B                                   & \uline{\textbf{53.74}} & \uline{14.63} & \uline{3.07} \\
+    \hline
+    \textbf{RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2} & 53.21 & \uline{\textbf{15.46}} & \uline{\textbf{3.40}} \\
+    tpro                                                                      & 53.15 & 13.58 & 2.27 \\
+    \hline
+    RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta                       & 52.99 & 12.29 & 2.11 \\
+    yagpt5lite                                                                & \uline{53.43} & \uline{14.85} & \uline{3.16} \\
+    \hline
+  \end{tabular}
+}
+
+\tab{tab:sec_cov}{Comparison of texts of two sections}{
+\centering
+  \begin{tabular}{|p{0.2\linewidth}|p{0.7\linewidth}|}
+    \hline
+    \makecell{\textbf{Model}} & \makecell{\textbf{Text}} \\ \hline
+    \textbf{DeepSeek V3} & \textbf{COVID-19 is an infectious disease}, \dots which \textbf{led to a global pandemic} that began in 2020.
+    Initially presenting with respiratory symptoms such as cough, fever, and shortness of breath, the disease can cause severe complications, \dots
+    The virus is highly transmissible, is presumed to have a zoonotic origin, and spread rapidly worldwide.
+    To control the pandemic, the WHO recommends vaccination, mask-wearing, social distancing, and hand hygiene, with vaccine effectiveness against the original strain reaching 85\% or higher.
+    Although COVID-19 in children more often has a mild course, severe cases are possible, including multisystem inflammatory syndrome. \\ 
+    \hline
+    \textbf{yagpt5lite} & \textbf{COVID-19 is a pandemic} caused by the novel coronavirus SARS-CoV-2.
+    As of January 14, 2022, the WHO had confirmed about \textbf{318,648,834} cases of COVID-19 worldwide, including \textbf{5,518,343} deaths.
+    The first COVID-19 vaccine was introduced in December 2020. On December 2, 2020, the United Kingdom became the first country to approve the Pfizer-BioNTech (BNT162) vaccine, which the WHO authorized for emergency use.
+    SARS-CoV-2 is considered more contagious than SARS-CoV and quickly spread around the world after several infection cases in Wuhan, China.
+    The pathogenesis of SARS-CoV-2 is associated with inflammatory responses that adversely affect the lungs and cause symptoms such as cough, fever, general malaise, shortness of breath, and respiratory failure. \\ 
+    \hline
+  \end{tabular}
+\caption{Comparison of texts of two sections}
+\label{tab:secs_com}
+}
 
 For a visual comparison of section-generation quality, consider the introductory parts of the article “COVID19”
-produced by DeepSeek V3 and yagpt5lite, respectively, shown in Figure \ref{fig:secs_com}.
+produced by DeepSeek V3 and yagpt5lite, respectively, shown in \tabref{tab:secs_com}.
 Despite some semantic inaccuracies (for example, the statement “COVID-19 is a pandemic,” whereas in reality it is a disease),
 yagpt5lite demonstrates a quite solid result. Its text falls short of DeepSeek V3’s version in terms of coverage and systematic exposition,
 but contains more numerical data and concrete facts. At the same time, the material generated by DeepSeek V3 reads like an excerpt from an encyclopedic article,
 whereas the yagpt5lite version is closer in style to a technical report on the disease.
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.9\textwidth]{figures/two_secs.png}
-\caption{Comparison of two section texts}
-\label{fig:secs_com}
-\end{figure}
 
 \section*{Conclusion}
 This paper proposes and implements the RuWikiBench benchmark for evaluating the analytical capabilities of large language models in generating scientific and encyclopedic texts in Russian. 
