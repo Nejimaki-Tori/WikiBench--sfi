@@ -73,13 +73,13 @@ This paper proposes an approach aimed at creating tools to test how well large l
 The code and data of this work have been made publicly available\footnote{\url{https://github.com/Nejimaki-Tori/WikiBench}}.
 
 \section{Dataset collection}
+To build a benchmark aimed at assessing the ability of language models to work with article sources, it is necessary to prepare a corpus of texts that will be used in generation. 
+The choice was made in favor of the Wikipedia-style because this genre simultaneously requires factual accuracy, completeness of analysis, and understanding of context, which aligns well with the research direction of this work.
 
-To build a benchmark aimed at assessing the ability of language models to work with article sources, it is necessary to prepare a corpus of texts that will be used in generation. The choice was made in favor of the Wikipedia-style because this genre simultaneously requires factual accuracy, completeness of analysis, and understanding of context, which aligns well with the research direction of this work.
-
-The Russian online encyclopedia "Ruwiki" was chosen as the source. It is distinguished by a large number of references to Russian-language sources, as well as stricter text filtering, which allows it to be relied upon as a reliable benchmark for assessing the quality of generating Russian-language articles.
+The Russian online encyclopedia "Ruwiki" was chosen as the source. It is distinguished by a large number of references to Russian-language sources, 
+as well as stricter text filtering, which allows it to be used as a reliable benchmark for assessing the quality of generating Russian-language articles.
 
 The data acquisition process included the following steps:
-
 \begin{enumerate}
 \item \textbf{Article Selection}: Articles on diverse topics containing a sufficient number of references to external sources were manually selected;
 \item \textbf{Source Downloading}: For each article, the available sources it references were automatically gathered;
@@ -100,7 +100,7 @@ and the text associated with them is removed, leaving only those sources that ar
 \figref{figures/article_entities.png} illustrates the schematic breakdown of an article\footnote{\url{https://ru.ruwiki.ru/wiki/Python}} into key entities used in subsequent processing.
 During the data processing stage, text filtering is performed to ensure its correct interpretation by the model.
 Each footnote (e.g., [1], [2]) is matched to a specific link corresponding to one of the available sources.
-This allows for precise identification of the link's position in the article text and its use for subsequent filtering.
+This allows for precise identification of the link's position in the article text and its use for filtering.
 
 \tab{tab:dataset}{Key characteristics of the collected dataset}{
     \begin{tabular}{lcc}
@@ -146,7 +146,7 @@ The queries in both languages are then combined into a single textual query for 
 Experiments were conducted with two approaches to query formulation:
 \begin{enumerate}
 \item \textbf{Pre-generated query based on the title and second-level headings}: Allows for a clean evaluation of the models' ranking abilities; the LLaMa 3 70b model \cite{llama} was used to generate the query;
-\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the fLLM is fully responsible for the quality of the results and independently decides which search query to formulate for BM25.
+\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the LLM is fully responsible for the quality of the results and independently decides which search query to formulate for BM25.
 \end{enumerate}
 Examples of generated descriptions are shown in \tabref{tab:cxx}.
 
@@ -221,7 +221,7 @@ Within the benchmark, two groups of metrics are used: ranking metrics, which ass
 
 \subsection{Ranking Metrics}
 
-To evaluate the quality of the source list, we use \textbf{NDCG@K} \cite{ndcg} and $\mathrm{R\text{-}Precision}$ \cite{rprecision}:
+To evaluate the quality of the source list, we use $\mathrm{NDCG@K}$ \cite{ndcg} and $\mathrm{R\text{-}Precision}$ \cite{rprecision}:
 \begin{equation}\label{ndcg}
 \mathrm{NDCG@K}= \frac{\mathrm{DCG@K}}{\mathrm{IDCG@K}},
 \end{equation}
@@ -258,7 +258,7 @@ F_{\mathrm{BERT}}= \frac{2\,P_{\mathrm{BERT}}\,R_{\mathrm{BERT}}}{P_{\mathrm{BER
 
 where $x$ is the reference text, $\hat{x}$ is the generated text; each sentence is encoded using the model\footnote{\url{https://huggingface.co/sergeyzh/BERTA}}, after which cosine similarity is computed.
 
-We also considered ROUGE-\allowbreak L and BLEU for evaluating section generations.
+ROUGE-\allowbreak L and BLEU were also considered for evaluating section generations.
 
 \textbf{ROUGE-L} \cite{rouge} is based on the length of the longest common subsequence (LCS) between the generated summary $S$ and the reference $R$:
 \begin{equation}\label{r_p}
@@ -271,7 +271,7 @@ We also considered ROUGE-\allowbreak L and BLEU for evaluating section generatio
   \text{ROUGE‑L} = \frac{2\;\text{Precision}\;\cdot\;\text{Recall}}{\text{Precision} + \text{Recall}},
 \end{equation}
 
-\textbf{BLEU} \cite{bleu} is an n-gram precision metric with a brevity penalty. The final score is given by Equation \eqref{bleu}:
+\textbf{BLEU} \cite{bleu} is an n-gram precision metric with a brevity penalty:
 \begin{equation}\label{bleu}
 \mathrm{BLEU}_N = \mathrm{BP}\cdot \exp\!\left(\sum_{n=1}^{N} w_n \log p_n\right),
 \end{equation}
