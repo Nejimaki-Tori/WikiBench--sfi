@@ -215,7 +215,7 @@ Two context window options were considered: either a zero window (only the snipp
 Heading similarity with reference headings was compared using cosine similarity: semantic correspondence was prioritized over exact wording or heading level.
 The comparison was performed against the cleaned article structure: all headings whose sections consisted entirely of text without downloadable sources were removed from the preprocessed text.
 
-\section{Evaluation Metrics}
+\section{Metrics}
 
 Within the benchmark, two groups of metrics are used: ranking metrics, which assess how well the model selects relevant sources, and text similarity metrics, which measure how closely the generated content matches the reference.
 
@@ -223,37 +223,37 @@ Within the benchmark, two groups of metrics are used: ranking metrics, which ass
 
 To evaluate the quality of the source list, we use \textbf{NDCG@K} \cite{ndcg} and $\mathrm{R\text{-}Precision}$ \cite{rprecision}:
 \begin{equation}\label{ndcg}
-\mathrm{NDCG@K}= \frac{\mathrm{DCG@K}}{\mathrm{IDCG@K}}
+\mathrm{NDCG@K}= \frac{\mathrm{DCG@K}}{\mathrm{IDCG@K}},
 \end{equation}
 
 \begin{equation}\label{dcg}
-\mathrm{DCG@K}= \sum_{i=1}^{K} \frac{\mathrm{rel}_i}{\log_2(i+1)}
+\mathrm{DCG@K}= \sum_{i=1}^{K} \frac{\mathrm{rel}_i}{\log_2(i+1)},
 \end{equation}
 
 \begin{equation}\label{idcg}
-\mathrm{IDCG@K}= \sum_{i=1}^{K} \frac{\mathrm{rel}^{\mathrm{IDEAL}}_i}{\log_2(i+1)}
+\mathrm{IDCG@K}= \sum_{i=1}^{K} \frac{\mathrm{rel}^{\mathrm{IDEAL}}_i}{\log_2(i+1)},
 \end{equation}
 
 \begin{equation}\label{rpr}
-\mathrm{R\text{-}Precision}= \frac{\sum_{i=1}^{R} \mathrm{rel}_i}{R}
+\mathrm{R\text{-}Precision}= \frac{\sum_{i=1}^{R} \mathrm{rel}_i}{R},
 \end{equation}
 
 where $\mathrm{rel}_i\in\{0,1\}$ is the indicator of relevance for the document at position $i$; $\mathrm{rel}^{\mathrm{IDEAL}}_i$ is the same quantity in the ideal (fully sorted) ranking;
 $R$ is the total number of relevant documents for the given query.
 
-\subsection{Text Similarity Metric}
+\subsection{Text Similarity Metrics}
 The quality of generated sections and headings is evaluated with \textbf{BERTScore} \cite{bertscore}:
 
 \begin{equation}\label{recall}
-R_{\mathrm{BERT}}= \frac{1}{|x|}\sum_{x_i\in x}\max_{\hat{x}_j\in\hat{x}} x_i^\top \hat{x}_j
+R_{\mathrm{BERT}}= \frac{1}{|x|}\sum_{x_i\in x}\max_{\hat{x}_j\in\hat{x}} x_i^\top \hat{x}_j,
 \end{equation}
 
 \begin{equation}\label{precision}
-P_{\mathrm{BERT}}= \frac{1}{|\hat{x}|}\sum_{\hat{x}_j\in\hat{x}}\max_{x_i\in x} x_i^\top \hat{x}_j
+P_{\mathrm{BERT}}= \frac{1}{|\hat{x}|}\sum_{\hat{x}_j\in\hat{x}}\max_{x_i\in x} x_i^\top \hat{x}_j,
 \end{equation}
 
 \begin{equation}\label{f}
-F_{\mathrm{BERT}}= \frac{2\,P_{\mathrm{BERT}}\,R_{\mathrm{BERT}}}{P_{\mathrm{BERT}} + R_{\mathrm{BERT}}}
+F_{\mathrm{BERT}}= \frac{2\,P_{\mathrm{BERT}}\,R_{\mathrm{BERT}}}{P_{\mathrm{BERT}} + R_{\mathrm{BERT}}},
 \end{equation}
 
 where $x$ is the reference text, $\hat{x}$ is the generated text; each sentence is encoded using the model\footnote{\url{https://huggingface.co/sergeyzh/BERTA}}, after which cosine similarity is computed.
@@ -262,13 +262,13 @@ We also considered ROUGE-\allowbreak L and BLEU for evaluating section generatio
 
 \textbf{ROUGE-L} \cite{rouge} is based on the length of the longest common subsequence (LCS) between the generated summary $S$ and the reference $R$:
 \begin{equation}\label{r_p}
-  \text{Precision} = \frac{\mathrm{LCS}(S,R)}{|S|},\quad
+  \text{Precision} = \frac{\mathrm{LCS}(S,R)}{|S|},
 \end{equation}
 \begin{equation}\label{r_r}
-  \text{Recall} = \frac{\mathrm{LCS}(S,R)}{|R|}
+  \text{Recall} = \frac{\mathrm{LCS}(S,R)}{|R|},
 \end{equation}
 \begin{equation}\label{rouge}
-  \text{ROUGE‑L} = \frac{2\;\text{Precision}\;\cdot\;\text{Recall}}{\text{Precision} + \text{Recall}}
+  \text{ROUGE‑L} = \frac{2\;\text{Precision}\;\cdot\;\text{Recall}}{\text{Precision} + \text{Recall}},
 \end{equation}
 
 \textbf{BLEU} \cite{bleu} is an n-gram precision metric with a brevity penalty. The final score is given by Equation \eqref{bleu}:
