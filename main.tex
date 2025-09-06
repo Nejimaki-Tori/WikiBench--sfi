@@ -38,7 +38,7 @@ This paper presents RuWikiBench - an open benchmark based on Ruwiki for evaluati
 built around three tasks:
 selection of relevant sources, article structuring, and section generation.
 The results of testing popular open-source LLMs show that even under ideal conditions, the best models do not always follow the expert logic of composing encyclopedic content:
-even with a perfect source retrieval system, the models cannot reproduce the reference outline, and the quality of section generation shows almost no dependence on the number of parameters.
+even with a perfect source retrieval system, the models cannot reproduce the reference outline, and the quality of section generation shows almost no dependence on the number of model parameters.
 
 \keywords{benchmark, Wikipedia, Ruwiki, large language model}
 \end{abstract}
@@ -54,35 +54,42 @@ RussianSuperGlue \cite{rsglue} evaluates general language understanding and basi
 MERA \cite{mera} provides unified testing conditions for models by compiling generation instructions for each task; however, the tasks themselves are oriented towards testing general comprehension. 
 LIBRA \cite{libra} focuses on testing a model's ability to retain and retrieve information from a large context but is centered on short answers that do not require deep reasoning. 
 Ru Arena General \cite{arena} focuses on pairwise model comparison rather than overall answer quality. 
-Ping-Pong \cite{pp} evaluates the dialog abilities of models, which is important for interactive systems, but is not suitable for assessing the ability to conduct research and write coherent scientific-encyclopedic texts. 
+Ping-Pong \cite{pp} evaluates the dialog abilities of models, which is important for interactive systems, 
+but is not suitable for assessing the ability to conduct research and write coherent scientific-encyclopedic texts. 
 At the same time, an entire class of tasks related to deep text analysis remains uncovered: creating detailed, structured, and factually accurate texts supported by a large number of sources.
 
 The recent development of new agent capabilities, such as the emergence of the "Deep Research" function by OpenAI \cite{deepr} or the development of the universal Storm algorithm \cite{storm}, 
-indicates a growing interest in conducting scientific research using large language models. This highlights the need to create new approaches for objectively evaluating the analytical capabilities of models. 
-Existing benchmarks only partially address aspects critical for generating scientific-encyclopedic texts, such as the ability to synthesize information from a set of documents, provide the structure of a future text, 
-maintain coherence and logical sequence of presentation, as well as ensure the accuracy and reliability of facts. One of the closest studies in this area is the ResearchArena \cite{resar} benchmark, 
-which formalizes the construction of an academic review; however, it is more aimed at testing the models' ability to select and organize relevant information and does not address their ability to generate coherent scientific-encyclopedic texts.
+indicates a growing interest in conducting scientific research using large language models. 
+This highlights the need to create new approaches for objectively evaluating the analytical capabilities of models. 
+Existing benchmarks only partially address aspects critical for generating scientific-encyclopedic texts, 
+such as the ability to extract relevant information from a set of documents, plan the structure of a future text, 
+maintain text coherence and fluency, as well as ensure the factual consistency. One of the closest studies in this area is the ResearchArena \cite{resar} benchmark, 
+which formalizes the construction of an academic review; however, it is more aimed at testing the models' ability 
+to select and organize relevant information and does not address their ability to generate coherent scientific-encyclopedic texts.
 
-This paper proposes an approach aimed at creating tools to test how well large language models can work with scientific-encyclopedic texts. Within the framework of this research:
+This paper proposes an approach aimed at creating tools to test how well large language models can work with scientific-encyclopedic texts.
+Our main contributions:
 \begin{enumerate}
-\item A labeled dataset based on the online encyclopedia "Ruwiki" has been collected;
-\item An open benchmark, RuWikiBench, has been developed to measure model quality on tasks requiring deep text analysis;
-\item The abilities of the best open large language models to generate Wikipedia-style articles have been tested.
+\item We collect "Ruwiki", a labeled dataset for generation of wikipedia-style articles in Russian language;
+\item We propose new benchmark, RuWikiBench that measures large language model analytical capabilities in Russian language;
+\item We evaluate the abilities of popular open-source large language models to generate Wikipedia-style articles.
 \end{enumerate}
 
-The code and data of this work have been made publicly available\footnote{\url{https://github.com/Nejimaki-Tori/WikiBench}}.
+The code and data of this work have been made publicly available\footnote{\url{https://github.com/Nejimaki-Tori/RuWikiBench}}.
 
 \section{Dataset collection}
-To build a benchmark aimed at assessing the ability of language models to work with article sources, it is necessary to prepare a corpus of texts that will be used in generation. 
-The choice was made in favor of the Wikipedia-style because this genre simultaneously requires factual accuracy, completeness of analysis, and understanding of context, which aligns well with the research direction of this work.
+To measure analytical capabilities of large language models we need a labeled corpus of texts that would contain various sources, 
+the respective analysis of those sources and analysis-source mapping for factuality evaluation of claims. 
+Wikipedia articles are the best candidates for such data because this genre simultaneously requires factual accuracy, completeness of analysis, 
+and understanding of context.
 
-The Russian online encyclopedia "Ruwiki" was chosen as the source. It is distinguished by a large number of references to Russian-language sources, 
-as well as stricter text filtering, which allows it to be used as a reliable benchmark for assessing the quality of generating Russian-language articles.
+We utilize articles from Russian online encyclopedia "RuWiki" which distinguishing features are a large number of references to Russian-language sources, 
+as well as stricter text filtering. These qualities ensure that the articles can be reliably verified and reproduced by human experts and therefore replicated by LLMs.
 
 The data acquisition process included the following steps:
 \begin{enumerate}
 \item \textbf{Article Selection}: Articles on diverse topics containing a sufficient number of references to external sources were manually selected;
-\item \textbf{Source Downloading}: For each article, the available sources it references were automatically gathered;
+\item \textbf{Source Downloading}: For each article, the available sources it references were web-scraped;
 \item \parbox[t]{0.9\textwidth}{\textbf{Splitting into Snippets}: To reproduce real Retrieval Augmented Generation (RAG) conditions, all texts were split into small fragments of approximately $\approx 600$ words in length.}
 \end{enumerate}
 
@@ -90,9 +97,9 @@ The data acquisition process included the following steps:
 
 \fig{width=0.8\linewidth}{figures/article_entities.png}{Main article entities}
 
-During the data acquisition stage, primary information extraction from the selected article and the collection of its associated sources are performed. \figref{figures/Source_extract.png} shows a brief schematic of the source text extraction process. The sources were downloaded using the Python module \texttt{newspaper3k}\footnote{\url{https://github.com/codelucas/newspaper}}.
-A subset of "Ruwiki" articles BB is taken as the initial corpus.
-The extraction of the article's HTML code is performed using standard Python module tools\footnote{\url{https://beautiful-soup-4.readthedocs.io/en/latest/}}$^,$\footnote{\url{https://requests.readthedocs.io/en/latest/index.html}}.
+\figref{figures/Source_extract.png} shows a brief schematic of the source text extraction process. The sources were downloaded using the Python module \texttt{newspaper3k}\footnote{\url{https://github.com/codelucas/newspaper}}.
+A subset of "Ruwiki" articles \(B\) is taken as the initial corpus.
+To extract article's HTML code we use BeautifulSoup4\footnote{\url{https://beautiful-soup-4.readthedocs.io/en/latest/}}.
 The obtained text is structured by splitting it into fragments corresponding to nested headings (H1, H2, H3, etc.), which preserves both the substantive part of the article and its hierarchical organization.
 Next, all external references cited in the "Notes" section are automatically extracted. Invalid links (e.g., 404 error) are excluded from further processing,
 and the text associated with them is removed, leaving only those sources that are actually accessible.
@@ -109,13 +116,13 @@ This allows for precise identification of the link's position in the article tex
         \hline
         Number of articles & 285 & 7,952 \\
         \hline
-        Number of downloaded sources & 15,686 & 12,034,505 \\
+        Number of sources & 15,686 & 12,034,505 \\
         \hline
         Total number of snippets & 36,860 & - \\
         \hline
-        Average outline size (number of headings) & 37 & - \\
+        Average outline size (headings) & 37 & - \\
         \hline
-        Average section size (number of words) & 112 & - \\
+        Average section size (words) & 112 & - \\
         \hline
     \end{tabular}
 }
@@ -138,27 +145,28 @@ To objectively assess the ability of language models to generate scientific and 
 \end{enumerate}
 Each stage is evaluated independently of the previous ones, allowing for a quantitative measurement of the quality of each specific subtask.
 
-\subsection{Selection of Relevant Sources}
+\subsection{Selecting relevant sources}
 One of the most effective search strategies \cite{rerank} is the preliminary generation of an expected result (description) based on the original query (article title) to create an expanded search query.
-The description is generated in both Russian and English, as the source texts are also available in both languages.
+In our pipeline the description is generated in both Russian and English, to address available source text language diversity.
 The queries in both languages are then combined into a single textual query for a BM25-based search system.
 
-Experiments were conducted with two approaches to query formulation:
+Experiments were conducted with two approaches to expanded query generation:
 \begin{enumerate}
-\item \textbf{Pre-generated query based on the title and second-level headings}: Allows for a clean evaluation of the models' ranking abilities; the LLaMa 3 70b model \cite{llama} was used to generate the query;
-\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the LLM is fully responsible for the quality of the results and independently decides which search query to formulate for BM25.
+\item \textbf{Ground-truth query based on the title and second-level headings}: A ground-truth query which is used for direct evaluation of the models' ranking abilities.
+We use LLaMa 3 70b model \cite{llama} was used to generate the query;
+\item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the LLM is fully responsible for the quality of the results and independently decides which search query to generate for BM25.
 \end{enumerate}
 Examples of generated descriptions are shown in \tabref{tab:cxx}.
 
-\tab{tab:cxx}{Comparison of descriptions of the article “C++” in two variants}{
+\tab{tab:cxx}{Comparison of english-translated descriptions of the article “C++” in two variants}{
   \center
   \small
-  \begin{tabular}{|p{0.15\linewidth}|p{0.75\linewidth}|}
+  \begin{tabular}{|p{0.16\linewidth}|p{0.74\linewidth}|}
   \hline
   \makecell{\textbf{Query} \\ \textbf{Variant}} & \makecell{\textbf{Text}} \\ 
   \hline
 
-  \makecell{\textbf{Generation} \\ \textbf{by headings}} & The article "C++" is an overview of the C++ programming language, its history, structure, and features. 
+  \makecell{\textbf{Ground-truth}} & The article "C++" is an overview of the C++ programming language, its history, structure, and features. 
   It covers the main aspects of the language, including its standard library, differences from the C language, and further development. 
   In addition, the article contains examples of C++ programs, comparisons with alternative programming languages, as well as critical analysis and discussion of the influence of C++ on the development of programming and existing alternatives. 
   The article is intended for readers interested in the C++ language and its role in modern programming. \\ 
@@ -173,51 +181,51 @@ Examples of generated descriptions are shown in \tabref{tab:cxx}.
 }
 
 The documents selected by the BM25 query are sequentially passed to the large language model, which must classify each snippet as relevant (answer "yes") or non-relevant (answer "no").
-To obtain numerical scores, the titles of the articles to which the retrieved documents belong are compared with the title of the article for which source texts are being selected.
-The logarithmic probability of the tokens in the model's response is taken: if the response was affirmative, the probability $P(\text{yes})$ is used; if negative, $1 - P(\text{no})$ is used.
+To obtain numerical scores, we compare related wikipedia article titles of retrieved documents to title of article we seek to generate.
+The logarithmic probability of the tokens in the model's response is taken: if the answer is positive, the probability $P(\text{yes})$ is used; if negative, $1 - P(\text{no})$ is used.
 This approach allows ranking the retrieved documents by the model's confidence in their relevance: the higher the probability, the higher the model's confidence in the response, and the higher the document is ranked in the results.
 
-\subsection{Article structure construction}
-First, each text fragment (snippet) from the reference article source is converted into a vector representation using a selected embedding model.
+\subsection{Article structure planning}
+First, each text fragment (snippet) from the reference article source is converted by embedding model.
 Then, the snippets are clustered into potential section contents.
-For determinism, the KMeans algorithm is applied with the number of clusters equal to the number of second-level headings in the reference outline, and the centroids are initialized with the vector representations of these headings.
+To guarantee reproducibility KMeans algorithm is applied with the number of clusters equal to the number of second-level headings in the reference outline, and the centroids are initialized with the vector representations of these headings.
 
 Next, five snippets closest to the cluster center are selected. This is done to reduce the influence of less relevant snippets on the final outline.
-The formation of mini-outlines for sections is carried out taking into account two key parameters:
+The generation of mini-outlines for sections is carried out taking into account two key parameters:
 the context window size (to account for references and the overall semantics of the document) and two generation modes - directly from the texts and through preliminary generation of a brief cluster description.
-The two generation modes allow for choosing the level of abstraction:
+These generation modes enable different levels of abstraction:
 the direct mode preserves details with raw data, while the mode via preliminary cluster description
-improves consistency of formulations and reduces information duplication.
+improves consistency and reduces information duplication.
 At the final stage, all mini-outlines are combined into the final structured article outline.
 
 \subsection{Section generation}
-For each article section, all snippets that were indicated as sources for the reference text of the section are extracted.
-All snippets are again converted into embeddings, and a pairwise similarity matrix is constructed as the product \(E \times E^\top\).
+For each article section, we extract all snippets that were indicated as sources for the reference text of the section.
+These snippets are again converted into embeddings, and a pairwise similarity matrix is constructed as the product \(E \times E^\top\).
 Elements with a similarity value above the threshold of 0.8 (empirically determined) are considered semantically close and are grouped together to avoid redundant repetitions during generation (e.g., when different sources paraphrase the same information).
 For each such semantic group, a hierarchical representation is built: the first five texts are taken, and a brief description is generated based on them.
 This description is then supplemented using the next five texts, and so on, until a complete compressed representation of the group is obtained.
-Thus, only a set of brief descriptions remains - the most important information without unnecessary repetition.
+Thus, only a set of brief descriptions remains - the most important information without excessive repetition.
 After this, the text of the section is generated based on the obtained group descriptions using a hierarchical summarization method \cite{hier}.
 
-\section{Experimental Setup Description}
+\section{Benchmark parameters}
 Below is a description of all data, models, hyperparameters, and procedures used to ensure reproducibility and analysis.
 
-\subsection{Generation Parameters}
+\subsection{Generation parameters}
 For all models, unless otherwise specified, the same generation parameters were used: temperature - 0.01, repetition penalty - 1.0, and top\_p - 0.9.
 
-\subsection{Relevant Source Selection}
+\subsection{Relevant source selection}
 Snippet indexing was performed using BM25\footnote{\url{https://github.com/xhluca/bm25s}} across the entire corpus of collected snippets without hyperparameter tuning (default values).
 For each relevant document, two non-relevant documents were selected (ratio 1:2) - this was done to improve evaluation robustness.
 
-\subsection{Article Structure Construction}
-Snippets were converted into vector space using the \texttt{sergeyzh/BERTA}\footnote{\url{https://huggingface.co/sergeyzh/BERTA}} model.
+\subsection{Article structure planning}
+To build snippet embeddings we used \texttt{sergeyzh/BERTA}\footnote{\url{https://huggingface.co/sergeyzh/BERTA}} model.
 Two context window options were considered: either a zero window (only the snippet itself) or one neighboring snippet to the left and right to expand the context.
 Heading similarity with reference headings was compared using cosine similarity: semantic correspondence was prioritized over exact wording or heading level.
 The comparison was performed against the cleaned article structure: all headings whose sections consisted entirely of text without downloadable sources were removed from the preprocessed text.
 
 \section{Metrics}
 
-Within the benchmark, two groups of metrics are used: ranking metrics, which assess how well the model selects relevant sources, and text similarity metrics, which measure how closely the generated content matches the reference.
+Within the benchmark, two groups of metrics are considered: ranking metrics, which assess how well the model selects relevant sources, and text similarity metrics, which measure how closely the generated content matches the reference.
 
 \subsection{Ranking Metrics}
 
@@ -278,7 +286,7 @@ ROUGE-\allowbreak L and BLEU were also considered for evaluating section generat
 where $p_n$ is the precision for $n$-grams, $w_n$ are the weights, and $\mathrm{BP}$ is the brevity penalty.
 
 
-\section{Description of Experimental Results}
+\section{Experiments}
 
 \subsection{Models}
 The experiments used the following large language models:
@@ -287,16 +295,16 @@ RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 \cite{ruadapt},
 DeepSeek V3 \cite{deepseek}, 
 Qwen3-\allowbreak 235B-\allowbreak A22B \cite{qwen3}, 
 tpro \cite{tpro} and yagpt5lite \cite{yagpt}.
-In all tables, models are ordered by size, and the best results within each parameter group are highlighted.
+In all tables, models are grouped by size, and the best results within each group are highlighted.
 
 \subsection{Results}
-Tables \ref{tab:query_ref} and \ref{tab:query_def} present the results of measuring ranking quality.
-We also include baseline results, represented by BM25 retrieval without model-based reranking.
-In the first case (Table \ref{tab:query_ref}), where a pre-generated search query was used for all models,
+\tabref{tab:query_ref} and \tabref{tab:query_def} present the results of source selection evaluation.
+As the baseline we use BM25 retrieval without model-based reranking.
+In the first case (\tabref{tab:query_ref}), where a pre-generated ground-truth search query was used for all models,
 the best results were achieved by DeepSeek V3, which indicates a strong ability to select relevant documents.
-In the second experiment (\ref{tab:query_def}), where the query was formed solely from the article title, tpro achieved the best results.
-The experiment showed that BM25’s own query generation is not inferior in ranking quality to the reference setup, in which queries are generated by a more “powerful” model and then
-used by all evaluated models. Presumably, this is because-as shown in \ref{tab:cxx} - the queries turn out to be similar:
+In the second experiment (\tabref{tab:query_def}), where the query was based solely on the article title, tpro achieved the best results.
+The experiment showed that LLM query generation is not inferior in ranking quality to the reference setup.
+Presumably, this is because (as shown in \tabref{tab:cxx}) the queries turn out to be very similar to ground-truth:
 LLMs have knowledge of Wikipedia’s typical article structure from training and can therefore connect relevant concepts in the required format.
 
 \tab{tab:query_ref}{Results of pure ranking ability evaluation}{
@@ -338,8 +346,8 @@ LLMs have knowledge of Wikipedia’s typical article structure from training and
   \end{tabular}
 }
 
-Overall, the models show fairly high metric values at this stage, which may be due to the fact that an article title reflects its content well.
-In the best cases, up to 80\% of the documents in the sample are relevant, which can be considered a good figure; however, there remains potential for further improvement.
+Overall, the models show fairly high performance at this stage, which may be due to the fact that an article title reflects its content well.
+In the best cases, up to 80\% of the documents in the sample are relevant, which implies there is significant room for for further improvement.
 
 \tab{tab:outline_res}{Results of outline generation}{
 \centering
@@ -363,18 +371,18 @@ In the best cases, up to 80\% of the documents in the sample are relevant, which
   \end{tabular}
 }
 
-Table \ref{tab:outline_res} presents the results of evaluating article-structure construction.
+\tabref{tab:outline_res} presents the results of article structure planning.
 Direct - generation from the cluster snippets, with neighbor context as indicated; Description - generation via a preliminary description of all cluster elements.
 The results show that with preliminary description generation, all models consistently improve in quality.
 RuadaptQwen3 shows the largest gain, rising to second place and effectively matching the results of the larger model,
 Qwen3-\allowbreak 235B-\allowbreak A22B. DeepSeek V3 remains the leader, showing a substantial margin over the others. At the bottom in quality are RuadaptQwen2.5-7B-\allowbreak Lite-\allowbreak Beta and yagpt5lite.
 At the same time, yagpt5lite, with only 8 billion parameters, delivers results comparable to a 32-billion-parameter model.
 \tabref{tab:outline} shows a comparison of a small excerpt of the reference and generated outlines.
-The obtained results correlate well with the degree of similarity between the headings and the reference. A common issue across all models was excessive heading hierarchy depth.
+A common issue across all models was excessive heading hierarchy depth.
 On “Ruwiki”, headings were rarely deeper than level three; however, the models often created fourth- and fifth-level headings, implying that all information belongs in one large section,
 even though it may differ somewhat in meaning and, in the original outline, would correspond to unrelated headings.
 
-\tab{tab:outline}{Comparison of two article outlines}{
+\tab{tab:outline}{Comparison of two englis-translated article outlines}{
 \centering
   \begin{multicols}{2}
     \textbf{Generated} \\
@@ -408,11 +416,11 @@ even though it may differ somewhat in meaning and, in the original outline, woul
   \end{multicols}
 }
 
-Table \ref{tab:secs} reports the measurements of section-generation quality. The final results are at roughly the same level, but this is due to the sensitivity of the metric used.
+\tabref{tab:secs} reports the evaluation of section-generation quality. The difference between model performance may be considered marginal, but this is due to the sensitivity of the metric used.
 Sections for which the algorithm did not select a single relevant snippet were excluded from the final metrics. The best overall results
-were demonstrated by Qwen3-\allowbreak 235B-\allowbreak A22B; however, in terms of ROUGE-\allowbreak L and BLEU, RuadaptQwen3-\allowbreak 32BInstruct-v2 leads, indicating better structural consistency and
-greater overlap of wording with the reference.
-The yagpt5lite model performs above average-especially on BLEU-at a much smaller size, whereas tpro shows the lowest values across all metrics.
+were demonstrated by Qwen3-\allowbreak 235B-\allowbreak A22B; however, in terms of ROUGE-\allowbreak L and BLEU, RuadaptQwen3-\allowbreak 32BInstruct-v2 shows better structural consistency and
+greater phrase overlap with the reference.
+The yagpt5lite model performs above average, especially on BLEU, at a much smaller size, whereas tpro shows the lowest values across all metrics.
 
 \tab{tab:secs}{Results of section generation}{
 \centering
@@ -432,7 +440,7 @@ The yagpt5lite model performs above average-especially on BLEU-at a much smaller
   \end{tabular}
 }
 
-\tab{tab:sec_cov}{Comparison of texts of two sections}{
+\tab{tab:sec_cov}{Comparison of english-translated texts of two sections}{
 \centering
   \begin{tabular}{|p{0.2\linewidth}|p{0.7\linewidth}|}
     \hline
@@ -454,22 +462,22 @@ The yagpt5lite model performs above average-especially on BLEU-at a much smaller
 \label{tab:secs_com}
 }
 
-For a visual comparison of section-generation quality, consider the introductory parts of the article “COVID19”
+For a qualitative evaluation of section-generation quality, we consider the introductory parts of the article “COVID19”
 produced by DeepSeek V3 and yagpt5lite, respectively, shown in \tabref{tab:secs_com}.
 Despite some semantic inaccuracies (for example, the statement “COVID-19 is a pandemic,” whereas in reality it is a disease),
 yagpt5lite demonstrates a quite solid result. Its text falls short of DeepSeek V3’s version in terms of coverage and systematic exposition,
-but contains more numerical data and concrete facts. At the same time, the material generated by DeepSeek V3 reads like an excerpt from an encyclopedic article,
+but contains more numerical data and concrete facts. At the same time, the material generated by DeepSeek V3 tends to resemble an encyclopedic article,
 whereas the yagpt5lite version is closer in style to a technical report on the disease.
 
 \section*{Conclusion}
-This paper proposes and implements the RuWikiBench benchmark for evaluating the analytical capabilities of large language models in generating scientific and encyclopedic texts in Russian. 
+This paper proposes RuWikiBench benchmark for evaluating the analytical capabilities of large language models in generating scientific and encyclopedic texts in Russian. 
 The core of the proposed evaluation system is a three-stage process, consisting of three independent systems that naturally arise when creating articles on a specific topic. 
-Relying on a filtered "Ruwiki" corpus with aligned snippets and a clearly defined evaluation methodology, the proposed benchmark establishes a foundation for further research in the application of language models to the 
-task of generating scientific and encyclopedic text.
+Relying on a filtered "Ruwiki" corpus and a clearly defined evaluation methodology, the proposed benchmark establishes a foundation for further research in the application of language models to the 
+task of generating scientific and encyclopedic text in Russian language.
 
 Experiments showed that with a fixed search query, DeepSeek V3 demonstrates the best source selection quality, significantly outperforming BM25 without reranking. 
-At the structure construction stage, it was found that adding a preliminary cluster description consistently improves the quality of outlines for all models, 
-including DeepSeek V3, which demonstrated the best understanding of the process. All models showed comparable text generation quality; 
+At the structure planning stage, it was found that adding a preliminary cluster description consistently improves the quality of outlines for all models, 
+including DeepSeek V3, which demonstrated the best understanding of the process. All models showed comparable section generation quality; 
 however, RuadaptQwen3-\allowbreak 32B-\allowbreak Instruct-\allowbreak v2 leads in ROUGE-L and BLEU metrics, indicating a text structure more consistent with the reference. 
 The work shows that models possess significant potential, but their reliable application requires further development of methods for analyzing and structuring review materials.
 

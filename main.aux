@@ -20,24 +20,26 @@
 \newlabel{figures/Source_extract.png}{{1}{3}{Source extract}{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Main article entities}}{3}{figure.caption.3}\protected@file@percent }
 \newlabel{figures/article_entities.png}{{2}{3}{Main article entities}{figure.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Key characteristics of the collected dataset}}{3}{table.caption.4}\protected@file@percent }
+\newlabel{tab:dataset}{{1}{3}{Key characteristics of the collected dataset}{table.caption.4}{}}
 \citation{rerank}
 \citation{llama}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Key characteristics of the collected dataset}}{4}{table.caption.4}\protected@file@percent }
-\newlabel{tab:dataset}{{1}{4}{Key characteristics of the collected dataset}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Evaluation Methodology}{4}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Selection of Relevant Sources}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Selecting relevant sources}{4}{subsection.2.1}\protected@file@percent }
 \citation{hier}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of descriptions of the article “C++” in two variants}}{5}{table.caption.5}\protected@file@percent }
-\newlabel{tab:cxx}{{2}{5}{Comparison of descriptions of the article “C++” in two variants}{table.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Article structure construction}{5}{subsection.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of english-translated descriptions of the article “C++” in two variants}}{5}{table.caption.5}\protected@file@percent }
+\newlabel{tab:cxx}{{2}{5}{Comparison of english-translated descriptions of the article “C++” in two variants}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Article structure planning}{5}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Section generation}{5}{subsection.2.3}\protected@file@percent }
 \citation{ndcg}
 \citation{rprecision}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Section generation}{6}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup Description}{6}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generation Parameters}{6}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Relevant Source Selection}{6}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Article Structure Construction}{6}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Benchmark parameters}{6}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generation parameters}{6}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Relevant source selection}{6}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Article structure planning}{6}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Metrics}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Ranking Metrics}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{ndcg}{{1}{6}{Ranking Metrics}{equation.1}{}}
 \citation{bertscore}
 \citation{rouge}
 \citation{bleu}
@@ -47,8 +49,6 @@
 \citation{qwen3}
 \citation{tpro}
 \citation{yagpt}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Ranking Metrics}{7}{subsection.4.1}\protected@file@percent }
-\newlabel{ndcg}{{1}{7}{Ranking Metrics}{equation.1}{}}
 \newlabel{dcg}{{2}{7}{Ranking Metrics}{equation.2}{}}
 \newlabel{idcg}{{3}{7}{Ranking Metrics}{equation.3}{}}
 \newlabel{rpr}{{4}{7}{Ranking Metrics}{equation.4}{}}
@@ -60,7 +60,7 @@
 \newlabel{r_r}{{9}{7}{Text Similarity Metrics}{equation.9}{}}
 \newlabel{rouge}{{10}{7}{Text Similarity Metrics}{equation.10}{}}
 \newlabel{bleu}{{11}{7}{Text Similarity Metrics}{equation.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Description of Experimental Results}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{8}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Models}{8}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{8}{subsection.5.2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Results of pure ranking ability evaluation}}{8}{table.caption.6}\protected@file@percent }
@@ -69,12 +69,12 @@
 \newlabel{tab:query_def}{{4}{8}{Results of evaluating BM25 query-generation ability}{table.caption.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Results of outline generation}}{9}{table.caption.8}\protected@file@percent }
 \newlabel{tab:outline_res}{{5}{9}{Results of outline generation}{table.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparison of two article outlines}}{9}{table.caption.9}\protected@file@percent }
-\newlabel{tab:outline}{{6}{9}{Comparison of two article outlines}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparison of two englis-translated article outlines}}{9}{table.caption.9}\protected@file@percent }
+\newlabel{tab:outline}{{6}{9}{Comparison of two englis-translated article outlines}{table.caption.9}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Results of section generation}}{10}{table.caption.10}\protected@file@percent }
 \newlabel{tab:secs}{{7}{10}{Results of section generation}{table.caption.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison of texts of two sections}}{10}{table.caption.11}\protected@file@percent }
-\newlabel{tab:sec_cov}{{8}{10}{Comparison of texts of two sections}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison of english-translated texts of two sections}}{10}{table.caption.11}\protected@file@percent }
+\newlabel{tab:sec_cov}{{8}{10}{Comparison of english-translated texts of two sections}{table.caption.11}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comparison of texts of two sections}}{10}{table.caption.11}\protected@file@percent }
 \newlabel{tab:secs_com}{{9}{10}{Comparison of texts of two sections}{table.caption.11}{}}
 \bibstyle{superfri}

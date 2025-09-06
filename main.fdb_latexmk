@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1756385638.78383 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1756385640.80762 0
+["pdflatex"] 1757166987.95186 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1757166989.98381 0
   "C:/Users/dagri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1756129507 89842 1f990f6fe0cb7373cc4286c81531a445 ""
   "C:/Users/dagri/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1753797438 13254354 43b71b833b32492885bfd28422881394 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -170,12 +170,12 @@
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xurl/xurl.sty" 1641733940 4675 e4b8c405820368c2dfb03526e16d725a ""
-  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1756385638 38751 56dad117c2f28616787c26e0d8850ad5 ""
+  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1757166987 38103 9aaa5959526304fd33339789b5c396c6 ""
   "figures/Source_extract.png" 1752752555 435998 393f6a0f8ec196bb9789c234f2f934cb ""
   "figures/article_entities.png" 1756384827 664426 f0575c7d1d4eb7fbd2566bc8ef80bd83 ""
-  "main.aux" 1756385640 6669 9e944dad54aeb67481840ff4cd3e0ab1 "pdflatex"
-  "main.out" 1756385640 2434 171c80b1f3470f347614ed7b9b43c1cf "pdflatex"
-  "main.tex" 1756385638 38751 56dad117c2f28616787c26e0d8850ad5 ""
+  "main.aux" 1757166989 6736 0d963dddf5344d678ba452eaaa27a6a1 "pdflatex"
+  "main.out" 1757166989 2194 306217e6b581a50063039d1fbecc774e "pdflatex"
+  "main.tex" 1757166987 38103 9aaa5959526304fd33339789b5c396c6 ""
   "superfri.cls" 1721976366 10107 c25378b18403232a0bc3b5f030091290 ""
   (generated)
   "main.aux"
