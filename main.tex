@@ -153,7 +153,7 @@ The queries in both languages are then combined into a single textual query for 
 Experiments were conducted with two approaches to expanded query generation:
 \begin{enumerate}
 \item \textbf{Ground-truth query based on the title and second-level headings}: A ground-truth query which is used for direct evaluation of the models' ranking abilities.
-We use LLaMa 3 70b model \cite{llama} was used to generate the query;
+We use LLaMa 3 70b model \cite{llama} to generate this query;
 \item \textbf{Query generated from the title by the evaluated model}: Similar to real-world conditions, the LLM is fully responsible for the quality of the results and independently decides which search query to generate for BM25.
 \end{enumerate}
 Examples of generated descriptions are shown in \tabref{tab:cxx}.
