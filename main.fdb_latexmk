@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1757167511.68847 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1757167513.69806 0
+["pdflatex"] 1757167678.18159 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1757167680.11378 0
   "C:/Users/dagri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1756129507 89842 1f990f6fe0cb7373cc4286c81531a445 ""
   "C:/Users/dagri/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1753797438 13254354 43b71b833b32492885bfd28422881394 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -97,9 +97,6 @@
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkeyval.tex" 1656236919 19231 27205ee17aaa2902aea3e0c07a3cfc65 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkvutils.tex" 1656236919 7677 9cb1a74d945bc9331f2181c0a59ff34a ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg" 1616067285 584 2a1075dd71571459f59146da9f7502ad ""
-  "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/algorithmicx/algorithmicx.sty" 1114624800 26750 ce139c05a983e19ddca355b43e29c395 ""
-  "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/algorithmicx/algpseudocode.sty" 1114624920 3457 d9077efe6b74c5a094199256af8d7d9a ""
-  "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/algorithms/algorithm.sty" 1251549064 3349 15763257e50278eef5db1952ccde229c ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/amscls/amsthm.sty" 1591023609 12594 0d51ac3a545aaaa555021326ff22a6cc ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssymb.sty" 1358197772 13829 94730e64147574077f8ecfea9bb69af4 ""
@@ -170,12 +167,12 @@
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xurl/xurl.sty" 1641733940 4675 e4b8c405820368c2dfb03526e16d725a ""
-  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1757167511 38106 63dcf18da77c1ca52d4f13bc446a7853 ""
+  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1757167675 38007 a838dad4913d985412f2cf5447e45abb ""
   "figures/Source_extract.png" 1752752555 435998 393f6a0f8ec196bb9789c234f2f934cb ""
   "figures/article_entities.png" 1756384827 664426 f0575c7d1d4eb7fbd2566bc8ef80bd83 ""
-  "main.aux" 1757167513 6736 0d963dddf5344d678ba452eaaa27a6a1 "pdflatex"
-  "main.out" 1757167513 2194 306217e6b581a50063039d1fbecc774e "pdflatex"
-  "main.tex" 1757167511 38106 63dcf18da77c1ca52d4f13bc446a7853 ""
+  "main.aux" 1757167679 6601 f7b98221d2b60f2949fd0bd1864ad95f "pdflatex"
+  "main.out" 1757167679 2194 306217e6b581a50063039d1fbecc774e "pdflatex"
+  "main.tex" 1757167675 38007 a838dad4913d985412f2cf5447e45abb ""
   "superfri.cls" 1721976366 10107 c25378b18403232a0bc3b5f030091290 ""
   (generated)
   "main.aux"
