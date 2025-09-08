@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1757334701.15003 "main.aux" "main.bbl" "main" 1757334924.81522 0
+["bibtex main"] 1757334701.15003 "main.aux" "main.bbl" "main" 1757341137.50157 0
   "./bitex.bib" 1757334697 14690 8a1cd66e787f32bb8826c2ba34f47e81 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/bibtex/bst/llncs/splncs04.bst" 1741086508 32146 aadf770ded437d161532035219ea6f45 ""
-  "main.aux" 1757334923 6617 fe54152a0ae30c0e125b0731112d97ae "pdflatex"
+  "main.aux" 1757341136 6617 fe54152a0ae30c0e125b0731112d97ae "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1757334922.28211 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1757334924.81587 0
+["pdflatex"] 1757341134.77685 "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" "main.pdf" "main" 1757341137.50234 0
   "C:/Users/dagri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1757330645 89842 1f990f6fe0cb7373cc4286c81531a445 ""
   "C:/Users/dagri/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1753797438 13254354 43b71b833b32492885bfd28422881394 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -175,13 +175,13 @@
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/dagri/AppData/Local/Programs/MiKTeX/tex/latex/xurl/xurl.sty" 1641733940 4675 e4b8c405820368c2dfb03526e16d725a ""
-  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1757334921 34526 35fd36ea6fb09ffa71e5f5af5e58a98d ""
+  "d:/MSU/year_4/semester_8/RCC/Articles/WikiBench/sfi/main.tex" 1757341134 34526 edb78e41205cd92b8a7d88330fb1d5c4 ""
   "figures/Source_extract.png" 1752752555 435998 393f6a0f8ec196bb9789c234f2f934cb ""
   "figures/article_entities.png" 1756384827 664426 f0575c7d1d4eb7fbd2566bc8ef80bd83 ""
-  "main.aux" 1757334923 6617 fe54152a0ae30c0e125b0731112d97ae "pdflatex"
+  "main.aux" 1757341136 6617 fe54152a0ae30c0e125b0731112d97ae "pdflatex"
   "main.bbl" 1757334701 5955 9418b8e95e02a17e0e899a8bfebd3325 "bibtex main"
-  "main.out" 1757334923 2194 306217e6b581a50063039d1fbecc774e "pdflatex"
-  "main.tex" 1757334921 34526 35fd36ea6fb09ffa71e5f5af5e58a98d ""
+  "main.out" 1757341136 2194 306217e6b581a50063039d1fbecc774e "pdflatex"
+  "main.tex" 1757341134 34526 edb78e41205cd92b8a7d88330fb1d5c4 ""
   "superfri.cls" 1721976366 10107 c25378b18403232a0bc3b5f030091290 ""
   (generated)
   "main.aux"
