@@ -1,0 +1,130 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{rprecision}
+Buckley, C., Voorhees, E.: Evaluating evaluation measure stability. SIGIR Forum
+  (ACM Special Interest Group on Information Retrieval)  (10 2000).
+  \doi{10.1145/345508.345543}
+
+\bibitem{libra}
+Churin, et~al.: "long input benchmark for russian analysis.". CoRR  (2024)
+
+\bibitem{mera}
+Fenogenova, A., Chervyakov, A., Martynov, N., Kozlova, A., Tikhonova, M.,
+  Akhmetgareeva, A., Emelyanov, A., Shevelev, D., Lebedev, P., Sinev, L.,
+  Isaeva, U., Kolomeytseva, K., Moskovskiy, D., Goncharova, E., Savushkin, N.,
+  Mikhailova, P., Minaeva, A., Dimitrov, D., Panchenko, A., Markov, S.: {MERA}:
+  A comprehensive {LLM} evaluation in {R}ussian. In: Ku, L.W., Martins, A.,
+  Srikumar, V. (eds.) Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers). pp. 9920--9948.
+  Association for Computational Linguistics, Bangkok, Thailand (Aug 2024).
+  \doi{10.18653/v1/2024.acl-long.534},
+  \url{https://aclanthology.org/2024.acl-long.534/}
+
+\bibitem{pp}
+Gusev, I.: Pingpong: A benchmark for role-playing language models with user
+  emulation and multi-model evaluation (2025),
+  \url{https://arxiv.org/abs/2409.06820}
+
+\bibitem{ndcg}
+J{\"a}rvelin, K., Kek{\"a}l{\"a}inen, J.: Cumulated gain-based evaluation of ir
+  techniques. ACM Trans. Inf. Syst.  \textbf{20},  422--446 (2002),
+  \url{https://api.semanticscholar.org/CorpusID:1981391}
+
+\bibitem{resar}
+Kang, H., Xiong, C.: Researcharena: Benchmarking large language models' ability
+  to collect and organize information as research agents (2025),
+  \url{https://arxiv.org/abs/2406.10291}
+
+\bibitem{rouge}
+Lin, C.Y.: {ROUGE}: A package for automatic evaluation of summaries. In: Text
+  Summarization Branches Out. pp. 74--81. Association for Computational
+  Linguistics, Barcelona, Spain (Jul 2004),
+  \url{https://aclanthology.org/W04-1013/}
+
+\bibitem{deepseek}
+Liu, A., et~al.: Deepseek{-}v3 technical report. CoRR  (2024)
+
+\bibitem{deepr}
+{OpenAI}: Introducing deep research.
+  \url{https://openai.com/index/introducing-deep-research/} (2024), accessed:
+  2025-07-30
+
+\bibitem{bleu}
+Papineni, K., Roukos, S., Ward, T., Zhu, W.J.: {B}leu: a method for automatic
+  evaluation of machine translation. In: Isabelle, P., Charniak, E., Lin, D.
+  (eds.) Proceedings of the 40th Annual Meeting of the Association for
+  Computational Linguistics. pp. 311--318. Association for Computational
+  Linguistics, Philadelphia, Pennsylvania, USA (Jul 2002).
+  \doi{10.3115/1073083.1073135}, \url{https://aclanthology.org/P02-1040/}
+
+\bibitem{storm}
+Shao, Y., Jiang, Y., Kanell, T.A., Xu, P., Khattab, O., Lam, M.S.: Assisting in
+  writing wikipedia-like articles from scratch with large language models
+  (2024), \url{https://arxiv.org/abs/2402.14207}
+
+\bibitem{rsglue}
+Shavrina, T., Fenogenova, A., Anton, E., Shevelev, D., Artemova, E., Malykh,
+  V., Mikhailov, V., Tikhonova, M., Chertok, A., Evlampiev, A.:
+  {R}ussian{S}uper{GLUE}: A {R}ussian language understanding evaluation
+  benchmark. In: Webber, B., Cohn, T., He, Y., Liu, Y. (eds.) Proceedings of
+  the 2020 Conference on Empirical Methods in Natural Language Processing
+  (EMNLP). pp. 4717--4726. Association for Computational Linguistics, Online
+  (Nov 2020). \doi{10.18653/v1/2020.emnlp-main.381},
+  \url{https://aclanthology.org/2020.emnlp-main.381/}
+
+\bibitem{tpro}
+{T{-}Bank}: T{-}bank has opened access to its own russian{-}language language
+  model in the 7--8 billion parameter weight category.
+  \url{https://www.tbank.ru/about/news/20072024-t-bank-opened-access-its-own-russian-language-language-model-weight-category-of-7-8-billion-parameters/}
+  (2024), accessed: 2025-08-21
+
+\bibitem{ruadapt}
+Tikhomirov, M., Chernyshov, D.: Facilitating large language model russian
+  adaptation with learned embedding propagation. Journal of Language and
+  Education  \textbf{10}(4),  130--145 (Dec 2024).
+  \doi{10.17323/jle.2024.22224}, \url{https://jle.hse.ru/article/view/22224}
+
+\bibitem{llama}
+Touvron, H., Lavril, T., Izacard, G., Martinet, X., Lachaux, M.A., Lacroix, T.,
+  Rozière, B., Goyal, N., Hambro, E., Azhar, F., Rodriguez, A., Joulin, A.,
+  Grave, E., Lample, G.: Llama: Open and efficient foundation language models
+  (2023), \url{https://arxiv.org/abs/2302.13971}
+
+\bibitem{arena}
+{VikhrModels}: Rullm arena: Russian llm evaluation benchmark.
+  \url{https://github.com/VikhrModels/ru_llm_arena} (2024), accessed:
+  2025-07-30
+
+\bibitem{rerank}
+Wang, X., Wang, Z., Gao, X., Zhang, F., Wu, Y., Xu, Z., Shi, T., Wang, Z., Li,
+  S., Qian, Q., Yin, R., Lv, C., Zheng, X., Huang, X.: Searching for best
+  practices in retrieval-augmented generation. In: Al-Onaizan, Y., Bansal, M.,
+  Chen, Y.N. (eds.) Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing. pp. 17716--17736. Association for Computational
+  Linguistics, Miami, Florida, USA (Nov 2024).
+  \doi{10.18653/v1/2024.emnlp-main.981},
+  \url{https://aclanthology.org/2024.emnlp-main.981/}
+
+\bibitem{hier}
+Wu, J., Ouyang, L., Ziegler, D.M., Stiennon, N., Lowe, R., Leike, J.,
+  Christiano, P.: Recursively summarizing books with human feedback (2021),
+  \url{https://arxiv.org/abs/2109.10862}
+
+\bibitem{yagpt}
+{Yandex}: Yandexgpt 5 with reasoning mode. \url{https://ya.ru/ai/gpt} (2025),
+  accessed: 2025-07-30
+
+\bibitem{qwen3}
+Yang, A., et~al.: Qwen3 technical report (2025),
+  \url{https://arxiv.org/abs/2505.09388}
+
+\bibitem{bertscore}
+Zhang, T., Kishore, V., Wu, F., Weinberger, K.Q., Artzi, Y.: {BERTScore}:
+  Evaluating text generation with {BERT}. In: International Conference on
+  Learning Representations (ICLR) (2020),
+  \url{https://openreview.net/forum?id=SkeHuCVFDr}
+
+\end{thebibliography}

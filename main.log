@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  6 SEP 2025 17:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  8 SEP 2025 15:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -557,7 +557,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 ) (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/type1cm\type1cm.sty
 Package: type1cm 2002/09/05 v0.04 BlueSky/Y&Y Type1 CM font definitions (DPC, patched RF)
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 21.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 23.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
@@ -566,24 +566,24 @@ File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count354
@@ -636,38 +636,38 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 23.
 (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 29.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 31.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 29.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 31.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 29.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 31.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 29.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 31.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 29.
+(Font)              <12> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 29.
+(Font)              <6> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 29.
+(Font)              <9> on input line 31.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 29.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 29.
+(Font)              <5> on input line 31.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 31.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -675,21 +675,21 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 [1
 
 {C:/Users/dagri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 76.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 76.
+(Font)              <11> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 76.
+(Font)              <7.69997> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 76.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 76.
+(Font)              <5.5> on input line 78.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 78.
  (C:\Users\dagri\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <figures/Source_extract.png, id=95, 1119.43219pt x 678.28406pt>
 File: figures/Source_extract.png Graphic file (type png)
 <use figures/Source_extract.png>
-Package pdftex.def Info: figures/Source_extract.png  used on input line 94.
+Package pdftex.def Info: figures/Source_extract.png  used on input line 96.
 (pdftex.def)             Requested size: 364.19667pt x 220.67775pt.
 
 
@@ -698,7 +698,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <figures/article_entities.png, id=97, 1601.2322pt x 898.10532pt>
 File: figures/article_entities.png Graphic file (type png)
 <use figures/article_entities.png>
-Package pdftex.def Info: figures/article_entities.png  used on input line 96.
+Package pdftex.def Info: figures/article_entities.png  used on input line 98.
 (pdftex.def)             Requested size: 364.19667pt x 204.27132pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -709,9 +709,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3 <./figures/Source_extract.png> <./figures/article_entities.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 179.
+(Font)              <10> on input line 181.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 179.
+(Font)              <7> on input line 181.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -740,11 +740,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9]
 
-[10]
+[10] (main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 7--10
+[]\T1/lmr/m/n/11 Buckley, C., Voorhees, E.: Eval-u-at-ing eval-u-a-tion mea-sure sta-bil-ity. SI-GIR
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--10
+\T1/lmr/m/n/11 Fo-rum (ACM Spe-cial In-ter-est Group on In-for-ma-tion Re-trieval) (10 2000).
+ []
+
+
 
 [11]
 
-[12] (main.aux)
+[12])
+
+[13] (main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
@@ -753,17 +765,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 306217E6B581A50063039D1FBECC774E;2194.
  ) 
 Here is how much of TeX's memory you used:
- 15753 strings out of 468148
- 255183 string characters out of 5431061
- 683906 words of memory out of 5000000
- 43974 multiletter control sequences out of 15000+600000
+ 15762 strings out of 468148
+ 255323 string characters out of 5431061
+ 685938 words of memory out of 5000000
+ 43979 multiletter control sequences out of 15000+600000
  722381 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,17n,79p,593b,569s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,17n,79p,593b,573s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/dagri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
-Output written on main.pdf (12 pages, 1323659 bytes).
+Output written on main.pdf (13 pages, 1331475 bytes).
 PDF statistics:
- 371 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
+ 397 PDF objects out of 1000 (max. 8388607)
+ 93 named destinations out of 1000 (max. 500000)
  131 words of extra memory for PDF output out of 10000 (max. 10000000)
 

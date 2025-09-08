@@ -18,13 +18,15 @@
 \usepackage[unicode=true,linktocpage=true]{hyperref}
 \usepackage{type1cm}
 
+\bibliographystyle{splncs04}
+
 \begin{document}
 \raggedbottom
 
 \author{D.\,A.~Grigoriev\footnote{\label{msu}Lomonosov Moscow State University, Moscow, Russia}\footnote{E-mail: dagrig14@yandex.ru}
 \and D.\,I.~Chernyshev\footnoteref{msu}\footnote{E-mail: chdanorbis@yandex.ru}}
 
-\title{RuWikiBench: Evaluating Large Language Models through replication of encyclopedia articles}
+\title{RuWikiBench: Evaluating Large Language Models through encyclopedia article replication}
 
 \maketitle{}
 
@@ -35,16 +37,16 @@ However, for Russian-language materials this issue has not been sufficiently stu
 This paper presents RuWikiBench - an open benchmark based on Ruwiki for evaluating the ability of large language models to reproduce Wikipedia-style articles,
 built around three tasks:
 selection of relevant sources, article structuring, and section generation.
-The results of testing popular open-source LLMs show that even under ideal conditions, the best models do not always follow the expert logic of composing encyclopedic content:
-even with a perfect source retrieval system, the models cannot reproduce the reference outline, and the quality of section generation shows almost no dependence on the number of model parameters.
+The results popular open-source LLM evaluation show that even under ideal conditions, the best models do not always follow the expert logic of composing encyclopedic content:
+even with a perfect source retrieval system, the models cannot reproduce the reference outline, and the quality of section generation shows almost no improvement with increase of model parameters.
 
 \keywords{benchmark, Wikipedia, Ruwiki, large language model}
 \end{abstract}
 
 \section*{Introduction}
-Modern large language models demonstrate impressive results in generating texts of various styles and themes. 
+Modern large language models demonstrate impressive text generation results for wide range of topics and domains. 
 However, their capabilities for working with scientific and encyclopedic materials remain understudied, particularly for Russian-language texts. 
-Existing methods for evaluating model capabilities predominantly focus on standard linguistic tasks, without paying sufficient attention to analytical abilities when working with scientific texts. 
+Existing methods for model capability evaluation predominantly focus on standard linguistic tasks, without paying sufficient attention to analytical abilities when working with scientific texts. 
 For the Russian language, this problem is especially relevant due to the limited availability of specialized evaluation tools.
 
 There are many benchmarks covering various linguistic tasks for the Russian language. 
@@ -65,7 +67,7 @@ maintain text coherence and fluency, as well as ensure the factual consistency. 
 which formalizes the construction of an academic review; however, it is more aimed at testing the models' ability 
 to select and organize relevant information and does not address their ability to generate coherent scientific-encyclopedic texts.
 
-This paper proposes an approach aimed at creating tools to test how well large language models can work with scientific-encyclopedic texts.
+This paper proposes an approach for evaluating large language model abilities to analyze and produce scientific-encyclopedic texts.
 Our main contributions:
 \begin{enumerate}
 \item We collect "Ruwiki", a labeled dataset for generation of wikipedia-style articles in Russian language;
@@ -78,8 +80,8 @@ The code and data of this work have been made publicly available\footnote{\url{h
 \section{Dataset collection}
 To measure analytical capabilities of large language models we need a labeled corpus of texts that would contain various sources, 
 the respective analysis of those sources and analysis-source mapping for factuality evaluation of claims. 
-Wikipedia articles are the best candidates for such data because this genre simultaneously requires factual accuracy, completeness of analysis, 
-and understanding of context.
+Wikipedia articles are the best candidates for such data because this genre simultaneously requires proving factual accuracy, acknowledging different perspectives, 
+and expressing complex topics in common terms.
 
 We utilize articles from Russian online encyclopedia "RuWiki" which distinguishing features are a large number of references to Russian-language sources, 
 as well as stricter text filtering. These qualities ensure that the articles can be reliably verified and reproduced by human experts and therefore replicated by LLMs.
@@ -482,89 +484,8 @@ The work shows that models possess significant potential, but their reliable app
 The study was supported by grant No. 25-11-00191 from the Russian Science Foundation.
 The work was carried out using the supercomputer "MSU-270" of the Lomonosov Moscow State University.
 
+\openaccess
 
+\bibliography{bitex}
 
-\bibliographystyle{superfri}
-\begin{thebibliography}{99}
-
-\bibitem{rsglue}
-\textit{RussianSuperGlue.}
-Shavrina, Tatiana, et al. "RussianSuperGLUE: A Russian Language Understanding Evaluation Benchmark." Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP). 2020.
-
-\bibitem{mera}
-\textit{Mera.}
-Fenogenova, Alena, et al. "MERA: A Comprehensive LLM Evaluation in Russian." Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2024.
-
-\bibitem{libra}
-\textit{LIBRA.}
-Churin I. et al. Long Input Benchmark for Russian Analysis //CoRR. – 2024.
-
-\bibitem{arena}
-VikhrModels. RuLLM Arena: Russian LLM Evaluation Benchmark // GitHub repository. – URL: \url{https://github.com/VikhrModels/ru_llm_arena} (accessed: 01.08.2025).
-
-\bibitem{pp}
-\textit{Ping-Pong.}
-Gusev I. PingPong: A Benchmark for Role-Playing Language Models with User Emulation and Multi-Model Evaluation.
-
-\bibitem{deepr}
-\textit{OpenAI.}
-Introducing deep research // OpenAI URL: \url{https://openai.com/index/introducing-deep-research/} (accessed: 31.07.2025).
-
-\bibitem{storm}
-\textit{Storm.}
-Shao Y. et al. Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models //NAACL-HLT. - 2024
-
-\bibitem{resar}
-\textit{ResearchArena.}
-Kang, Hao, and Chenyan Xiong. "ResearchArena: Benchmarking LLMs' Ability to Collect and Organize Information as Research Agents." arXiv e-prints (2024): arXiv-2406.
-
-\bibitem{rerank}
-\textit{Reranking.}
-Wang X. et al. Searching for Best Practices in Retrieval-Augmented Generation //CoRR. - 2024.
-
-\bibitem{llama}
-Touvron H. et al. LLaMA: Open and Efficient Foundation Language Models.
-
-\bibitem{hier} 
-Wu, Jeff, et al. "Recursively summarizing books with human feedback." arXiv preprint arXiv:2109.10862 (2021).
-
-\bibitem{ndcg}
-\textit{NDCG.}
-Järvelin, Kalervo, and Jaana Kekäläinen. "Cumulated gain-based evaluation of IR techniques." ACM Transactions on Information Systems (TOIS) 20.4 (2002): 422-446.
-
-\bibitem{rprecision}
-\textit{R-Precision.}
-BUCKLEY C. Evaluating Evaluation Measure Stability //ACM SIGIR 2000 Proceedings. - 2000.
-
-\bibitem{bertscore}
-\textit{BERTScore.}
-Zhang T. et al. BERTScore: Evaluating Text Generation with BERT //International Conference on Learning Representations.
-
-\bibitem{rouge}
-\textit{ROUGE.}
-Lin, Chin-Yew. "Rouge: A package for automatic evaluation of summaries." Text summarization branches out. 2004.
-
-\bibitem{bleu}
-\textit{BLEU.}
-Papineni K. et al. BLEU: a Method for Automatic Evaluation of Machine Translation.
-
-\bibitem{ruadapt}
-\textit{RuadaptQwen.}
-Tikhomirov, Mikhail, and Daniil Chernyshev. "Facilitating large language model russian adaptation with learned embedding propagation." Journal of Language and Education 10.4 (40) (2024): 130-145.
-
-\bibitem{deepseek}
-\textit{DeepSeek V3.}
-Liu A. et al. DeepSeek-V3 Technical Report //CoRR. - 2024.
-
-\bibitem{qwen3}
-\textit{Qwen3-\allowbreak 235B.}
-Yang A. et al. Qwen3 technical report //arXiv preprint arXiv:2505.09388. - 2025.
-
-\bibitem{tpro}
-T-Bank has opened access to its own Russian-language language model in the weight category of 7-8 billion parameters / T-Bank URL: \url{https://www.tbank.ru/about/news/20072024-t-bank-opened-access-its-own-russian-language-language-model-weight-category-of-7-8-billion-parameters/} (accessed: 10.05.2025).
-
-\bibitem{yagpt}
-YandexGPT 5 with reasoning mode // Yandex URL: https://ya.ru/ai/gpt (accessed: 30.07.2025).
-
-\end{thebibliography}
 \end{document}
